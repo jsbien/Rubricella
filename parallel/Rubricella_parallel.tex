@@ -1,0 +1,243 @@
+% https://stackoverflow.com/questions/3736292/in-latex-is-there-a-way-to-include-the-filename-of-a-graphic-into-a-caption
+
+% interchar unisugar xecolor xeindex ucharclasses
+% font-linuxlibertine?
+% texlive-humanities
+% fonts-symbola
+%\documentclass[12pt]{report}
+\documentclass[12pt]{book}
+\listfiles
+%\usepackage[margin=1in]{geometry}
+\usepackage[a4paper,landscape]{geometry}
+%\usepackage{titlesec}
+\usepackage{polyglossia}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainlanguage{polish}
+%\setotherlanguage[variant=ancient]{greek}
+%\setmainfont{Linux Libertine O}
+%\setmainfont{Junicode}
+%\setmainfont{Symbola}
+%\setmainfont[RawFeature={cv58=}]{JuniusX}
+%\setmainfont[RawFeature={cv59=1}]{JuniusX}
+%\setmainfont[RawFeature={+cv13=1}]{JuniusX}
+%\setmainfont{JuniusX}
+\setmainfont{JunicodeTwoBeta-Regular}
+\newfontfamily{\Symbola}{Symbola_hint.ttf}
+\newcommand{\Ssgl}[1]{{\Symbola #1}}
+\usepackage{graphicx}
+\usepackage{expex}
+% ???:
+% ERROR: LaTeX Error: Unknown option `backref' for package `enotez'. 0.10!
+% \usepackage[backref]{enotez}
+\lingset{glhangstyle=none}
+\defineglwlevels{Rekonstrukcja,Ubytki,U}
+ \newcommand{\bg}{\begingl[everygla={\color{blue}},everyglUbytki={\color{green}},everyglRekonstrukcja={\color{black}},%
+ everyglU={\color{brown}}]}
+% ???:
+\let\numerwiersza\excnt
+
+
+\usepackage{enotez}
+\setenotez{backref}
+%\let\footnote=\endnote
+
+\usepackage{varioref}
+
+% https://github.com/psb1558/Junicode-New/issues/3
+% \setmainfont[RawFeature={cv13=1}]{JuniusX}
+% For the record, this syntax will replace the slashed o with the fourth of the alternates for ø in XeLaTeX with Fontspec:
+
+% \usepackage{fontspec}
+% \setmainfont{JuniusX}[RawFeature={+cv16=3}]
+
+% or anywhere in the document:
+
+% \addfontfeature{CharacterVariant={16:3}}
+
+% Note that in Fontspec the variants in features like salt and cvNN are indexed from zero instead of from one so use cv16=3 instead of cv16=4.
+
+% %\newfontfamily{\defaultfont}{Symbola}
+% \newfontfamily{\defaultfont}{JuniusX}
+% % \newfontfamily{\latinfont}{Symbola}
+% \newfontfamily{\latinfont}{JuniusX}
+% \newfontfamily{\mufi}{Junicode}
+
+% \usepackage[Latin,PrivateUseArea]{ucharclasses}
+
+% nie działa?:
+% \setDefaultTransitions{\defaultfont}{}
+% \setTransitionsForLatin{\latinfont}{}
+% \setTransitionTo{PrivateUseArea}{\mufi}
+
+% \titleformat{\chapter}[display]
+% {\normalfont\filcenter}
+%  {\LARGE\MakeUppercase{\chaptertitlename} \thechapter}
+%  {1pc} 
+%  {\vspace{1pc}%
+%    \LARGE}
+% \titlespacing{\chapter}
+% {0pt}{0pt}{10pt}
+
+% \titleformat{\section}[leftmargin]
+%  {\normalfont
+%   \vspace{0pt}%
+%    \bfseries\Large\filleft}
+% {\thesection}{.5em}{} 
+% \titlespacing{\section}
+% {4pc}{1.5ex plus .1ex minus .2ex}{0pt}
+
+% \renewcommand{\thesection}{\arabic{chapter}:\arabic{section}}
+
+\lingset{glhangstyle=none}
+
+\catcode`\&=11
+\catcode`\|=11
+
+% see below
+% \usepackage{xcolor}
+% black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta, olive, orange, pink, purple, red, teal, violet, white, yellow.
+\usepackage{fancyhdr}
+\renewcommand{\chaptermark}[1]{}
+\renewcommand{\sectionmark}[1]{}
+
+%???:
+\newcounter{Apageno}[section]
+% Sawicki
+\newcounter{Spageno}
+\newcounter{Slineno}
+% Rekonstrukcja
+\newcounter{Rpageno}
+\newcounter{Rlineno}
+% ubytki
+\newcounter{upageno}
+\newcounter{ulineno}
+
+% Ungler
+\newcounter{Upageno}
+\newcounter{Ulineno}
+
+
+%\setlength{\headheight}{14.49998pt}.
+\setlength{\headheight}{15pt}
+
+
+% Haller
+\newcommand{\apage}[1]{\setcounter{Apageno}{#1}\colorbox{yellow}{[#1]}}
+% Sawicki
+\newcommand{\Spage}[2]{\setcounter{Spageno}{#1}\setcounter{Slineno}{#2}\colorbox{yellow}{[#1-#2]}}
+\newcommand{\Rpage}[2]{\setcounter{Rpageno}{#1}\setcounter{Rlineno}{#2}\colorbox{yellow}{[#1-#2]}}
+\newcommand{\upage}[2]{\setcounter{upageno}{#1}\setcounter{ulineno}{#2}\colorbox{yellow}{[#1-#2]}}
+\newcommand{\Upage}[2]{\setcounter{Upageno}{#1}\setcounter{Ulineno}{#2}\colorbox{yellow}{[#1-#2]}}
+% placeholder
+\newcommand{\xpage}[0]{{}}
+
+\fancypagestyle{Rparallel}{%
+\fancyhf{}%
+\fancyhead[L]{\color{black}{Ungler region \theUpageno, wiersz \theUlineno}}%
+\fancyhead[R]{{\color{blue}{Sawicki  s.~\theSpageno, w. \theSlineno{} (Haller w. \theApageno)}}}%
+%\fancyhead[C]{{\color{black}{ubytki s. \theupageno, w. \theulineno}}}%
+\fancyfoot[C]{\thepage}%
+}
+
+\newcommand{\br}[1]{\index{br:#1}{\color{magenta}#1}}
+\newcommand{\bra}[2]{\index{br:#1}{\color{magenta}#2}}
+
+% polski indeksowany
+\newcommand{\pli}[1]{\index{pl:#1}{\color{red}#1}}
+% polski tekst niewyróżniony kolorem
+\newcommand{\plt}[1]{\index{plt:#1}{#1}}
+
+% łacinskie objaśnienia
+\newcommand{\lati}[1]{\index{lat:#1}{\color{olive}#1}}
+
+
+
+\usepackage{makeidx}\makeindex
+%\usepackage{hvindex}% for \Index
+% options clash:
+% \usepackage[colorlinks]{hyperref}
+
+
+\usepackage{hyperref}
+
+\usepackage[dvipsnames]{xcolor}
+
+
+\def\glslink#1#2{#2}
+\def\nullum#1{}
+\def\Dziech#1{{\let\index\nullum\color{teal}#1}}
+\def\Kucharski#1{{\let\index\nullum\color{orange}#1}}
+%\let\gls\relax
+\newcommand{\gls}[1]{{\color{olive}#1}}
+
+\let\str\relax
+% string Kucharski
+\newcommand{\strK}[1]{{\index{strK:#1}\colorbox{yellow}{\textit{#1}}}}
+% string Kucharski
+\newcommand{\StrK}[1]{{\colorbox{GreenYellow}{#1}}}
+% string
+\newcommand{\str}[1]{{\index{str:#1}\colorbox{yellow}{#1}}}
+% string
+\newcommand{\Str}[1]{{\colorbox{GreenYellow}{#1}}}
+% string
+\newcommand{\strA}[1]{{\index{strA:#1}\colorbox{yellow}{#1}}}
+% string
+\newcommand{\strB}[1]{{\index{strB:#1}\colorbox{yellow}{#1}}}
+\let\Index\relax
+
+% https://tex.stackexchange.com/questions/16765/biblatex-author-year-square-brackets
+% \usepackage[style=authoryear,backend=biber,backref=true,urldate=short]{biblatex}
+\usepackage[style=ext-authoryear,backend=biber,backref=true,urldate=short]{biblatex}
+\DeclareOuterCiteDelims{parencite}{\bibopenbracket}{\bibclosebracket}
+\addbibresource{PT.bib}
+\DefineBibliographyStrings{polish}{%
+  byeditor = {red.},
+  urlseen = {dostęp},
+}
+
+% http://tex.stackexchange.com/questions/166337/quotation-mark-quotation-sign-xelatex-polyglossia-csquotes
+% undefined - sprawdzić !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+% \DeclareQuoteStyle{polish}% I looked it up on Wikipedia, no idea if it's right
+%   {\quotedblbase}
+%   {\textquotedblright}
+%   [0.05em]
+%   {\textquoteleft}
+%   {\textquoteright}
+
+\catcode`\&=11
+\catcode`\|=11
+\catcode`\_=11
+
+% nie działa:?
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\floatpagefraction}{0.9}	% require fuller float pages
+
+
+\author{Janusz S. Bień}
+\title{Rubricella Unglera z 1511 r.\\Pytania do łacinników}
+\date{\today}
+
+\begin{document}
+
+\pagestyle{Rparallel}
+  
+\include{Rubricella_onlyparallel-text}
+
+\printbibliography
+
+%\printendnotes
+
+%\printindex
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% ispell-local-dictionary: "polish"
+%%% coding: utf-8-unix
+%%% TeX-PDF-mode: t
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
