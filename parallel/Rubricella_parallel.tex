@@ -36,7 +36,7 @@
  everyglU={\color{brown}}]}
 % ???:
 \let\numerwiersza\excnt
-
+ \newcommand{\eg}{\xe\markboth{\theUpageno-\theUlineno}{\theUpageno-\theUlineno}}
 
 \usepackage{enotez}
 \setenotez{backref}
@@ -121,6 +121,10 @@
 %\setlength{\headheight}{14.49998pt}.
 \setlength{\headheight}{15pt}
 
+\renewcommand{\chaptermark}[1]{}
+\renewcommand{\sectionmark}[1]{}
+% https://tex.stackexchange.com/questions/127151/dictionary-style-header-problem-with-fancyhdr
+% http://members.chello.pl/t.plataprzechlewski/blog/running_head_in_vocabulary.html
 
 % Haller
 \newcommand{\apage}[1]{\setcounter{Apageno}{#1}\colorbox{yellow}{[#1]}}
@@ -128,13 +132,17 @@
 \newcommand{\Spage}[2]{\setcounter{Spageno}{#1}\setcounter{Slineno}{#2}\colorbox{yellow}{[#1-#2]}}
 \newcommand{\Rpage}[2]{\setcounter{Rpageno}{#1}\setcounter{Rlineno}{#2}\colorbox{yellow}{[#1-#2]}}
 \newcommand{\upage}[2]{\setcounter{upageno}{#1}\setcounter{ulineno}{#2}\colorbox{yellow}{[#1-#2]}}
+
 \newcommand{\Upage}[2]{\setcounter{Upageno}{#1}\setcounter{Ulineno}{#2}\colorbox{yellow}{[#1-#2]}}
+%\newcommand{\Upage}[2]{\markboth{#1-#2}{#1-#2}\colorbox{yellow}{[#1-#2]}}
 % placeholder
 \newcommand{\xpage}[0]{{}}
 
 \fancypagestyle{Rparallel}{%
 \fancyhf{}%
-\fancyhead[L]{\color{black}{Ungler region \theUpageno, wiersz \theUlineno}}%
+%\fancyhead[L]{\color{black}{Ungler region \theUpageno, wiersz \theUlineno}}%
+\fancyhead[L]{{\color{black}{Ungler \rightmark}}}%
+\fancyhead[R]{{\color{black}{Ungler \leftmark}}}%
 % \fancyhead[R]{{\color{blue}{Sawicki  s.~\theSpageno, w. \theSlineno{} (Haller w. \theApageno)}}}%
 %\fancyhead[C]{{\color{black}{ubytki s. \theupageno, w. \theulineno}}}%
 \fancyfoot[C]{\thepage}%
@@ -226,6 +234,7 @@
 \begin{document}
 
 \maketitle{}
+%{\theUpageno}{\theUpageno}
 
 \newpage
 
