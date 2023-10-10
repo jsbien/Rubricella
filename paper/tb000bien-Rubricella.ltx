@@ -264,7 +264,7 @@ the character inventory, I confronted the sources creating a
 parallel text: Haller's rubricella Sawicki's transcription,
 reconstructed Ungler's rubricella transcription, original Ungler
 rubricella typemic transcription, cf. Fig. \ref{fig:RubrParallel}. It
-allowed in particular to resove some non-obvious abbreviations. On the
+allowed in particular to resolve some non-obvious abbreviations. On the
 other hand the parallel text revealed some strange discrepancies, but
 this is outside the scope of this paper.
 
@@ -329,10 +329,10 @@ understood literally, is no longer in use. It was replaced by neural
 network tools, usually named Handwritten Text Recogniton (HTR), which
 operate on the whole lines of texts. Although the results of HTR are
 often quite impressive, the segmentation into characters and even
-words is not needed for these algorithms, so looks like the tools for
-such detailed segmentations are no longer developed and are not
-available easily, at least I din't find any such tool appropriate for
-my goals\footnote{In particular \prname{Glyph Miner}
+words is not needed for these algorithms, so the tools for such
+detailed segmentations are not available easily, at least I didn't
+find any such tool appropriate for my goals\footnote{In particular
+  \prname{Glyph Miner}
   (\tbsurl{https://github.com/benedikt-budig/glyph-miner/}) seemed
   quite promising, but its use appeared prohibitively difficult,
   primarily because of the lack of sufficient documentation,
@@ -389,17 +389,17 @@ were unfortunately not satisfactory and required manual adjustment,
 which was done during the indexing phase.
 
 
- The ALTO files (one file for every page) are converted first to
+ The ALTO files (one file for every page) were converted first to
  \textit{hOCR} (\cite{BREU2007}) with \textsf{ocr-transform}
  tool\footnote{\tbsurl{github.com/UB-Mannheim/ocr-fileformat}}.
 
  The next step was using the \textsf{html2djvused} program. Originally
  written by Jakub Wilk in Python 2 and distributed with
- \textsf{ocrodjvu}\footnote{\tbsurl{github.com/jwilk-archive/ocrodjvu}}
- is no longer maintained by him; several forks exist with more or less
- complete conversion to Python 3, I used one of
- them\footnote{\tbsurl{github.com/rockclimb/hocr2djvused}}.  As
- the name suggest, the output of \textsf{html2djvused} was used by
+ \textsf{ocrodjvu}\footnote{\tbsurl{github.com/jwilk-archive/ocrodjvu}},
+ it is no longer maintained by him; several forks exist with more or
+ less complete conversion to Python 3, I used one of
+ them\footnote{\tbsurl{github.com/rockclimb/hocr2djvused}}.  As the
+ name suggest, the output of \textsf{html2djvused} was used by
  \textsf{djvused}, one of the tools of the DjVuLibre
  library\footnote{\tbsurl{djvu.sourceforge.net/}}, to import the
  transcription as the hidden text layer into the DjVu document
@@ -470,7 +470,7 @@ reasons):
 \item \verb|file:Rubricela_1511_Unglera.djvu?|\break
   \verb|djvuopts=&page=0003|\break
   \verb|&highlight=0237,2075,0117,0019| (the URL without color
-  specification, as we use a rudimentary form of the path, the file
+  specification; as we use a rudimentary form of the path, the file
   has to be present in the current directory),
 \item \verb|Rubricela_1511_Unglera.djvu| p=3 l=19 tl=258 w=39 tw=530
   (the description: the file name, the page number, the line number on
@@ -510,14 +510,15 @@ reasons):
  incorporate the changes into the hidden text layer. It can be done
  with a very simple program which is however yet to be written.
  
- To double-check the index it good to make a histogram of all the
+ To double-check the index it is good to make a histogram of all the
  characters occuring in the text. I usually used for it
  \prname{unihistext}\footnote{cf. \tbsurl{https://github.com/jsbien/unihistext}},
  a fork of Bill Poser's \prname{unihist}, implemented some time ago by
- a student of mine following my suggestions, which provided the names
- for the Unicode and some private characters and their combining sequences. Unfortunately it was
- written in Python 2 and its adaptation to Python 3 does not seem
- trivial. Hence now I have to use the original \prname{unihist}.
+ a student of mine following my suggestions. It provided the names for
+ the Unicode and some private use characters and their combining
+ sequences. Unfortunately it was written in Python 2 and its
+ adaptation to Python 3 does not seem trivial. Hence now I have to use
+ the original \prname{unihist}.
 
 
  It should be noted that it is very easy to create various specialised
@@ -534,7 +535,7 @@ The main tool for snippet extraction is \prname{ddjvu}, the calls to
 cf. Fig~\ref{sed1} and \ref{sed1example}.  Please note that the
 graphic snippet file name incorporates the information about its
 origin. I consider this very useful, but unfortunately due to a not
-yet fixed bug there are not alway reliable.
+yet fixed bug they are not alway reliable.
 
 \begin{figure*}[h]
 \relsize{-2}  \centering
@@ -560,7 +561,8 @@ ddjvu -format=ppm -page=1 -segment=259x313+8+55 RubricellaUnglerTrJSB.djvu imgtm
 \label{sed1example}
 \end{figure*}
 
-To allow for including the snippets in a \LaTeX{} source we convert them to the \prname{png}, cf. Fig.~\ref{convert}.
+To allow for including the snippets in a \LaTeX{} document we convert
+them to the \prname{png}, cf. Fig.~\ref{convert}.
 
 \begin{figure*}[h]
 \relsize{-2}  \centering
@@ -612,9 +614,11 @@ one contains a kind of high level transcription for which I don't have
 a name yet. I apply the following rules, roughly in the order listed.
 \begin{enumerate}
 \item Ligatures are split into the component letters, e.g. \Ju{}
-  becomes \Ju{ſi} and \Ju{ĳ} becomes \Ju{ij}, which may be subject to
-  further processing, e.g. \Ju{ſi} becomes \Ju{si} and \Ju{ij} becomes
-  \Ju{ii} (there was/is no letter \Ju{j} in
+  becomes \Ju{ſ\/i} and \Ju{ĳ} becomes
+% unable to disable this ligature!!!:
+  \Ju{{i}\hskip0pt {j}}, which may be
+  subject to further processing, e.g. \Ju{ſ\/i} becomes \Ju{si} and
+  \Ju{i\/j} becomes \Ju{ii} (there was/is no letter \Ju{j} in
   Latin\footnote{Cf. e.g. \tbsurl{medium.com/in-medias-res/theres-no-j-in-latin-your-holiness-5a331c3f7a06}};
   nevertheless \Ju{j} was/is used in the so called Ramist
   forms\footnote{The name comes from Pierre de la Ramée (Petrus
@@ -725,7 +729,8 @@ other prints of that time.
 On the other hand the various shapes of the overline abbreviation mark
 definitely appear also in this and other publications, cf. some
 examples below. All of them are encoded, at least for the time being,
-just as a macron (in Unicode \Ju{◌¯} \ucode{00AF} \uname{MACRON}).
+just as a macron (in Unicode \Ju{◌̄} \ucode{25CC} \uname{COMBINING
+  MACRON}).
 % , cf. e.g. \cite{bień21:_trakt_stanis_zabor}.
 
 Another problem worth mentioning concerns the variants of letter
@@ -943,7 +948,8 @@ On the other hand on the figure \ref{fig:Ungler1_pismo01_tab112} the
 diacritical mark over \textit{s} looks rather as a macron.
 
 It is interesting to compare the letter \textit{l} in the examples (4)
-and e.g. (15). Is this the same type from the same font? I'm not sure.
+and e.g. (15). Is this the same type/sort from the same font? I'm not
+sure.
 
 A reader may be curious what the letter \Ju{Ʒ}, which usually is just
 the equivalent of \Ju{z}, is doing in the abbreviation of
@@ -1039,12 +1045,12 @@ which in the Junicode should be rendered as the ligature \Ju{ſb̵}. I
 
  The figure lists two brevigraphs based on the long \textit{s}. The
  first one is \Ju{} (\mcode{E8B7} \uname{LATIN SMALL LETTER LONG S
-   WITH FLOURISH [MUFI 4.0]} seen on the example (68);
- it can also be used as a separate word(its
- interpretation were suggested on the Facebook Paleography Group by
- Gionata Brusa and Carolus Hrachowiczensis
- \footnote{\tbsurl{https://www.facebook.com/groups/7687162686/posts/10159250228377687}}). The second one, the ligature
- with the letter \textit{h} and a diacritic mark, was discussed above.
+   WITH FLOURISH [MUFI 4.0]} seen on the example (68); it can also be
+ used as a separate word (its interpretations were suggested on the
+ Facebook Paleography Group by Gionata Brusa and Carolus
+ Hrachowiczensis\footnote{\tbsurl{https://www.facebook.com/groups/7687162686/posts/10159250228377687}}). The
+ second one, the ligature with the letter \textit{h} and a diacritic
+ mark, was discussed above.
 
    \lingset{glhangstyle=none}
 {\Junicode
@@ -1082,7 +1088,7 @@ brevigraph \Ju{ꝰ} (\ucode{A770} \uname{MODIFIER LETTER US}).
 The figure \ref{fig:Ungler1_pismo01_tab112} lists also a brevigraphs
 in the form of an insular \textit{d} with a diacritical
 mark\footnote{\tbsurl{https://github.com/psb1558/Junicode-font/discussions/133}}
-and a \textit{v} with a diacritic mark, but they don't occur in the
+and a \textit{v} with a diacritical mark, but they don't occur in the
 text of Rubricella.
 
 \subsection{Other characters}
@@ -1091,7 +1097,7 @@ text of Rubricella.
 Other characters listed in the figure fall into two categories:
 \begin{itemize}
 \item digits,
-\item punctuation marks in a rather large sense.
+\item punctuation marks (in a rather large sense).
 \end{itemize}
 Besides the full stop and the semicolon, we have here a hyphen, namely
 \Ju{⸗} (\ucode{2E17} \uname{DOUBLE OBLIQUE HYPHEN}), an asterix (not
