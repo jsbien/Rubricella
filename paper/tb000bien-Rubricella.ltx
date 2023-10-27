@@ -164,7 +164,7 @@ question was used in only three publications,\footnote{I take this claim
 \end{enumerate}
 We will focus here on the third item, see Fig.~\ref{fig:Rubr} (the
 page format is \textit{plano}, an unfolded
-sheet, a.k.a.\ broadside\tburlfootnote{http://ihl.enssib.fr/paper-and-watermarks-as-bibliographical-evidence/the-shape-of-paper};
+sheet;\tburlfootnote{http://ihl.enssib.fr/paper-and-watermarks-as-bibliographical-evidence/the-shape-of-paper}
 I don't know the exact size) which was used in
 \cite{bień21:_reper_ungler_polon_typog} in a very limited way.
 
@@ -533,24 +533,6 @@ reasons):
  incorporate the changes into the hidden text layer. It can be done
  with a very simple program which is, however, yet to be written.
  
- To double-check the index it is good to make a histogram of all the
- characters occurring in the text. For this, I have usually used
- \prname{unihistext},\footnote{\tbsurl{https://github.com/jsbien/unihistext}}
- a fork of Bill Poser's \prname{unihist}, implemented some time ago by
- a student of mine following my suggestions. It provided the names for
- the Unicode and some private use characters and their combining
- sequences. Unfortunately, it was written in Python 2 and its
- adaptation to Python 3 does not seem trivial. Hence now I have to use
- the original \prname{unihist}.
-
-
- It should be noted that it is very easy to create various specialised
- subindexes by extracting the relevant lines of the \CSV\ file with,
- e.g.\ \prname{grep}. For this purpose some special tags can be added
- to selected fields (with \prname{djview4poliqarp} or a favourite text
- or spreadsheet editor). Such subindexes can be used in particular for
- snippet extraction described below.
- 
 % emacs-page
 {\abovecaptionskip=0pt \belowcaptionskip=\medskipamount
  \let\tubcaptionleftglue=\relax % left-justify these captions
@@ -612,6 +594,24 @@ U;file:RubricellaUnglerTrJSB.djvu?djvuopts=&page=1&highlight=8,55,259,313;Rubric
 \end{figure*}
 }
 
+ To double-check the index it is good to make a histogram of all the
+ characters occurring in the text. For this, I have usually used
+ \prname{unihistext},\footnote{\tbsurl{https://github.com/jsbien/unihistext}}
+ a fork of Bill Poser's \prname{unihist}, implemented some time ago by
+ a student of mine following my suggestions. It provided the names for
+ the Unicode and some private use characters and their combining
+ sequences. Unfortunately, it was written in Python 2 and its
+ adaptation to Python 3 does not seem trivial. Hence now I have to use
+ the original \prname{unihist}.
+
+
+ It should be noted that it is very easy to create various specialised
+ subindexes by extracting the relevant lines of the \CSV\ file with,
+ e.g.\ \prname{grep}. For this purpose some special tags can be added
+ to selected fields (with \prname{djview4poliqarp} or a favourite text
+ or spreadsheet editor). Such subindexes can be used in particular for
+ snippet extraction described below.
+ 
 \subsection{Snippets extraction}
 \label{sec:snippets-extraction}
 The main tool for snippet extraction is \prname{ddjvu}, and calls to
