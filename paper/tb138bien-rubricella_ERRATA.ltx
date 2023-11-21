@@ -1,0 +1,240 @@
+\tracinglostchars=3
+\RequirePackage{snapshot}
+\documentclass[final]{ltugboat}
+\ifx\tubdots\undefined \else \let\dots\tubdots \let\ldots\tubdots \fi
+\setcounter{topnumber}{20} % allow lots of figures at top of page
+\setcounter{dbltopnumber}{20}
+\setcounter{totalnumber}{20}
+\renewcommand{\topfraction}{.8}
+\renewcommand{\dbltopfraction}{.8}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks,pdfa]{hyperref}
+\usepackage{relsize}
+\usepackage{expex}
+
+%%% Start of metadata %%%
+
+\title{Towards an inventory of old print characters: Ungler's
+  \textit{Rubricella}, a case study\\\textsc{Errata}}
+
+\author{Janusz S. Bień}
+\address{Warsaw, Poland}
+\netaddress{jsbien (at) uw.edu.pl}
+\personalURL{sites.google.com/view/jsbien}
+\ORCID{0000-0001-5006-8183}
+% To receive a physical copy of the TUGboat issue, please include the
+% mailing address we should use, as a comment if you prefer it not be printed.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Janusz Bień
+% Bacewiczówny 2 m. 45
+% 02-786 Warszawa
+% Poland
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of metadata %%%
+
+% I do not insist on using color.
+\usepackage{xcolor}
+
+\newfontfamily{\Junicode}{Junicode-Regular.ttf}[ItalicFont=Junicode-Italic.ttf]
+\newfontfamily{\JunicodeI}{Junicode-Italic.ttf}
+\newfontfamily{\JunicodeB}{Junicode-Bold.ttf}
+
+\newfontfamily\cJ[Color=black]{Junicode-Regular.ttf} % violet
+\newcommand{\Ju}[1]{{`\cJ#1}'}
+\newcommand{\Junq}[1]{{\cJ#1}} % no quote
+
+\newfontfamily{\Symbola}{Symbola_hint.ttf}%[Path=/usr/share/fonts/truetype/ancient-scripts/]
+% Any other font with the appropriate coverage will do
+% \Ssgl{⧺} (\ucode{29FA} \uname{DOUBLE PLUS}) to mark a missing
+% beginning or ending of a word, and \Ssgl{⋯} (\ucode{22EF}
+% \uname{MIDLINE HORIZONTAL ELLIPSIS}) to mark a whole missing
+% word. Moreover I use \Ssgl{⚠} (\ucode{26A0} \uname{WARNING SIGN})
+
+
+\newcommand{\uname}[1]{{\textsc{\MakeLowercase{#1}}}}
+\newcommand{\ucode}[1]{{\acro{U+#1}}}
+\newcommand{\mcode}[1]{{\acro{M+#1}}}
+\newcommand{\prname}[1]{{\textsf{#1}}}
+% \catcode`\_=12
+
+% % glyph
+% \setlength{\fboxsep}{2pt} % default 3pt, reduce clashes
+% \newcommand{\gl}[1]{\fbox{\Junicode\addfontfeature{StylisticSet=10}#1}}
+% % simple glyph (no box)
+% %\newcommand{\sgl}[1]{{\mtags{#1}}}
+% \newcommand{\sgl}[1]{{\Junicode\addfontfeature{StylisticSet=10}#1}}
+ \newcommand{\sgl}[1]{{\Junicode#1}}
+% %  simple glyph (no box) in italics
+% \newcommand{\sgli}[1]{{\JunicodeI\addfontfeature{StylisticSet=10}#1}}
+
+% % Junicode input
+% %\newcommand{\Ji}[1]{{\JunicodeMagenta\textbf{#1}}}
+% \newcommand{\Ji}[1]{{\JunicodeB #1}}
+
+% % Symbola (or equivalent) glyph
+% \newcommand{\Sgl}[1]{\fbox{\Symbola #1}}
+% Symbola (or equivalent) simple glyph (no box)
+\newcommand{\Ssgl}[1]{{\Symbola #1}}
+
+\usepackage{relsize}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  \Ju{} was confused with \Ju{\addfontfeature{Ligatures=Historic}ſꝫ};
+  a typo corrected (was \textit{h}, is \textit{b}).
+\end{abstract}
+
+
+\subsection{Brevigraphs}
+\label{sec:brevigraphs}
+
+[\ldots]
+
+% Some popular brevigraphs have already occurred in the examples above, namely
+% \Ju{⁊} (\ucode{204A} \uname{TIRONIAN SIGN ET}, in
+% the Junicode
+% font also \Ju{󰀝}; see example (50)), \Ju{ꝉ} (\ucode{A749}
+% \uname{LATIN SMALL LETTER L WITH HIGH STROKE}, in Junicode also
+% %\Ju{󰀏}% wrong output with luatex, mailed luigi 12nov23
+% `\includegraphics{f000f.pdf}'%
+% ), 
+% which occurs with different meanings in examples (52),
+% (53) and (54), and \Ju{ꝝ} (\ucode{A75D} \uname{LATIN SMALL
+%   LETTER RUM ROTUNDA}) (example (53)).
+
+
+% I prefer to classify the character encoded here as \Ju{h̵}\footnote{Its
+%   shape can be also approximated by \Ju{} (\mcode{E8A3} \uname{LATIN ABBREVIATION SIGN AUTEM [MUFI 4.0]}).}
+% (\ucode{0068} \uname{LATIN SMALL LETTER H} followed by \ucode{0335}
+% \uname{COMBINING SHORT STROKE OVERLAY}), in Junicode also
+% \Ju{\addfontfeatures{CharacterVariant=16:0}h̵}\footnote{\tbsurl{github.com/psb1558/Junicode-font/discussions/134}},
+% see also example (51), as a brevigraph, but the diacritic can be used also
+% with other letters; see an example below.\footnote{In the Facebook
+%   Paleography Society group, Lisa Howarth wrote
+%   (\tbsurl{facebook.com/groups/7687162686/permalink/10158299890607687})
+%   \textit{When attached to an `h', it usually means `er' or `ab'
+%     depending on the word. It can also stand as a more general
+%     abbreviation in longer words [\ldots]}.\raggedright} However, because the
+% diacritic touches the base letter, I prefer to treat them as a whole.
+
+% Essentially the same diacritic is used also with the letter \Ju{b}
+% which is in turn ligated with the long \textit{s}; see example
+% (63). David Baker suggested encoding it as the sequence of \Ju{ſ},
+% \Ju{b} and \Ju{◌̵} (\ucode{0335} \uname{COMBINING SHORT STROKE
+%   OVERLAY}),\footnote{\tbsurl{https://github.com/psb1558/Junicode-font/discussions/233}}
+% which in the Junicode font is rendered as the ligature \Ju{ſb̵}. I
+%  prefer to treat the ligature as a single brevigraph.
+
+%  Fig.~\ref{fig:Ungler1_pismo01_tab112} lists two brevigraphs
+%  based on the letter \textit{p}, namely \Ju{ꝑ} (\ucode{A751}
+%  \uname{LATIN LETTER P WITH STROKE THROUGH DESCENDER}) and \Ju{ꝓ}
+%  (\ucode{A753} \uname{LATIN SMALL LETTER P WITH FLOURISH}). The first
+%  character is illustrated below in example (64), the second can be seen
+%  in examples (6) and (61).
+
+%  The figure lists three brevigraphs based on the letter
+%  \textit{q}. The first two are well known: \Ju{ꝙ} (\ucode{A759}
+%  \uname{LATIN SMALL LETTER Q WITH DIAGONAL STROKE}), see example
+%  (65),\footnote{The brevigraph is often used as a separate word.} and
+%  \Ju{} (\mcode{E8BF} \uname{LATIN SMALL LETTER Q LIGATED WITH FINAL
+%    ET [MUFI 4.0]}), see example (66). The third is \uname{LATIN
+%    SMALL LETTER Q LIGATED WITH FINAL ET [MUFI 4.0]} with a diacritic
+%  mark, which can be interpreted as the \Ju{◌ᷓ } \ucode {1DD3}
+%  \uname{COMBINING LATIN SMALL LETTER FLATTENED OPEN A ABOVE} mentioned
+%  earlier, giving the interpretation \Ju{ꝙᷓ}. Another interpretation,
+%  used here, is just \Ju{◌̈} (\ucode{0308} \uname{COMBINING
+%    DIAERESIS}). The brevigraph can be used as a separate word.
+
+The figure lists two brevigraphs based on the long \textit{s}. The
+first one is slightly similar to \Ju{} (\mcode{E8B7} \uname{LATIN
+  SMALL LETTER LONG S WITH FLOURISH [MUFI 4.0]}, but actually it is
+the long \textit{s} (\ucode{017F}) ligated with the final \textit{et}
+(\ucode{A76B}); it is present neither in Unicode nor in the MUFI
+recommendation. As far as I know, this ligature is available only in
+the Junicode
+font\footnote{https://github.com/psb1558/Junicode-font/discussions/140}
+with the Historic Ligature (\textit{hlig}) feature:
+\Ju{\addfontfeature{Ligatures=Historic}ſꝫ}.  It can be seen in example
+(68) where it is used as a separate word (its interpretations were
+suggested in the Facebook Paleography Society group by Gionata Brusa
+and Carolus Hrachowiczensis\footnote{\raggedright
+  \tbsurl{https://facebook.com/groups/7687162686/posts/10159250228377687}};
+unfortunately none of the group noted that I confused \Ju{} with
+\Ju{\addfontfeature{Ligatures=Historic}ſꝫ}).
+
+The second brevigraph, the ligature with the letter \textit{b} and a
+diacritic mark, was discussed above.
+
+\lingset{glhangstyle=none}
+\defineglwlevels{nr,Unicode,tr}
+\newcommand{\bg}{\begingl[everyglUnicode={\color{red}},everygltr={\color{blue}}]}
+
+{\Junicode
+\exdisplay
+\bg
+\gla    
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x1559y130} % ! ſƀ͡ſcripto
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x769y166} % ! ꝑmanente
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x254y1295} % ! ꝙ
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x397y1621} % E! vſ
+\includegraphics[height=3ex]{snippets/quam} % E! ̈⚠
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x636y863} % ꝫ⚠
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x155y1095} % ! ↄcluſa
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x608y890} % ! lcōibꝰ
+//
+\glnr
+(63) (64) (65) (66) (67) (68) (69) (70)
+(71) (72) (73) (74) (75) (76) (77) (78) (79) (80)
+//
+\glUnicode
+{{ſ͡ƀſcripto}} ꝑmanente {ꝙ} {vſ} {{̈}} {\addfontfeature{Ligatures=Historic}ſꝫ}
+ↄcluſa  lcōibꝰ
+//
+\gltr
+{subscripto} permanente {quod} usque {quam} {scilitet? sed?} conclusa lectionibus
+//
+\endgl
+\xe
+}
+
+% Further, example (69) illustrates the brevigraph \Ju{ↄ} (\ucode{2184}
+% \uname{LATIN SMALL LETTER REVERSED C}) and example (70) shows the
+% brevigraph \Ju{ꝰ} (\ucode{A770} \uname{MODIFIER LETTER US}).
+
+\noindent
+[\ldots]
+
+% Fig.~\ref{fig:Ungler1_pismo01_tab112} also lists brevigraphs
+% in the form of an insular \textit{d} with a diacritical
+% mark\footnote{\tbsurl{https://github.com/psb1558/Junicode-font/discussions/133}}
+% and a \textit{v} with a diacritical mark, but they don't occur in the
+% text of \textit{Rubricella}.
+
+
+
+\small
+\def\url{\tburl}
+\SetBibJustification{\raggedright \advance\itemsep by 1pt plus1pt minus1pt }
+% \bibliographystyle{tugboat}
+%\nocite{book-minimal}      % make the bibliography non-empty
+%\bibliography{rubricella}       % xampl.bib comes with BibTeX
+
+\makesignature
+
+% clear footer for splice
+\makeatletter \def\@oddfoot{}\def\@evenfoot{}\makeatother
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% ispell-local-dictionary: "english"
+%%% TeX-master: t
+%%% coding: utf-8-unix
+%%% TeX-PDF-mode: t
+%%% TeX-engine: xetex
+%%% End:
