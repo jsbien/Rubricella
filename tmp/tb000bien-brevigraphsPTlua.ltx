@@ -1,0 +1,1070 @@
+% snippets.zip (PNG files to be included in glyphs directory)
+% figures.zip (LaTeX sources to be included)
+\tracinglostchars=3
+%\documentclass[final]{ltugboat}
+\RequirePackage{snapshot}
+\documentclass{ltugboat}
+\usepackage{snapshot}
+\ifx\tubdots\undefined \else \let\dots\tubdots \let\ldots\tubdots \fi
+\setcounter{topnumber}{20} % allow lots of figures at top of page
+\setcounter{dbltopnumber}{20}
+\setcounter{totalnumber}{20}
+\renewcommand{\topfraction}{.8}
+\renewcommand{\dbltopfraction}{.8}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage[hidelinks,pdfa]{hyperref}
+\usepackage{relsize}
+\usepackage{expex}
+%\usepackage{tabularray}
+\usepackage{tabularx}
+%\usepackage{ltablex}
+
+% 1 number
+% 2 height
+% 3 image
+% 4 font
+% 5 comment
+\newcommand{\PTglyph}[3]{\includegraphics[height=#2ex]{glyphs/#3}}
+% 1 numer
+% 2 font identifier
+\newcommand{\PTpismo}[2]{{\tiny #2}}
+
+
+\lingset{glhangstyle=none}
+\defineglwlevels{pismo,nr}
+\newcommand{\bg}{\begingl}
+
+%%% Start of metadata %%%
+
+\title{Basic Latin brevigraphs listed in \textit{Polonia Typographica
+    Saeculi Sedecimi} (progress report)}
+
+
+\address{Warsaw, Poland}
+\netaddress{jsbien (at) uw.edu.pl}
+\personalURL{sites.google.com/view/jsbien}
+\ORCID{0000-0001-5006-8183}
+% To receive a physical copy of the TUGboat issue, please include the
+% mailing address we should use, as a comment if you prefer it not be printed.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Janusz Bień
+% Bacewiczówny 2 m. 45
+% 02-786 Warszawa
+% Poland
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of metadata %%%
+
+% I do not insist on using color.
+\usepackage{xcolor}
+
+\newfontfamily{\Junicode}{Junicode-Regular.ttf}[Renderer=HarfBuzz,ItalicFont=Junicode-Italic.ttf]
+% \newfontfamily{\JunicodeI}{Junicode-Italic.ttf}
+% \newfontfamily{\JunicodeB}{Junicode-Bold.ttf}
+
+%\newfontfamily\cJ[Color=black]{Junicode-Regular.ttf} % violet
+\newfontfamily\cJ[Color=violet]{Junicode-Regular.ttf}[Renderer=HarfBuzz] % violet
+\newfontfamily\cJi[Color=violet]{Junicode-Italic.ttf}[Renderer=HarfBuzz] % violet
+\newcommand{\Ju}[1]{{`\cJ#1}'}
+\newcommand{\iJu}[1]{{`\cJi#1}'}
+\newcommand{\Junq}[1]{{\cJ#1}} % no quote
+
+
+\newfontfamily{\Symbola}{Symbola_hint.ttf}
+\newfontfamily{\cSymbola}[Color=violet]{Symbola_hint.ttf}
+% % Symbola (or equivalent) glyph
+% \newcommand{\Sgl}[1]{\fbox{\Symbola #1}}
+ \newcommand{\cSgl}[1]{{\cSymbola #1}}
+% Symbola (or equivalent) simple glyph (no box)
+\newcommand{\Ssgl}[1]{{\Symbola #1}}
+% Any other font with the appropriate coverage will do
+
+
+\newcommand{\uname}[1]{{\textsc{\MakeLowercase{#1}}}}
+\newcommand{\ucode}[1]{{\acro{U+#1}}}
+\newcommand{\mcode}[1]{{\acro{M+#1}}}
+\newcommand{\prname}[1]{{\textsf{#1}}}
+ \catcode`\_=12
+% \catcode`\_=11
+
+% % glyph
+% \setlength{\fboxsep}{2pt} % default 3pt, reduce clashes
+% \newcommand{\gl}[1]{\fbox{\Junicode\addfontfeature{StylisticSet=10}#1}}
+% % simple glyph (no box)
+% %\newcommand{\sgl}[1]{{\mtags{#1}}}
+% \newcommand{\sgl}[1]{{\Junicode\addfontfeature{StylisticSet=10}#1}}
+ \newcommand{\sgl}[1]{{\Junicode#1}}
+% %  simple glyph (no box) in italics
+% \newcommand{\sgli}[1]{{\JunicodeI\addfontfeature{StylisticSet=10}#1}}
+
+% % Junicode input
+% %\newcommand{\Ji}[1]{{\JunicodeMagenta\textbf{#1}}}
+% \newcommand{\Ji}[1]{{\JunicodeB #1}}
+
+
+\usepackage{relsize}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+
+% The paper is a follow up of my earlier papers, namely
+% \cite{bień21:_trakt_stanis_zabor},
+% \cite{bień21:_reper_ungler_polon_typog} and \cite{Rubricella2023}, but
+% it uses a different approach. 
+
+The fonts of the several 16th century printers active in Poland,
+namely Aleksander Augezdecki, Jan Haller, Kasper Hochfeder, Florian
+Ungler (the first and second printing house) and Maciej Wirzbięta, has
+been described in the series of 12 fascicules entitled \textit{Polonia
+  {Typographica} {Saeculi} {Sedecimi}} published in years
+1959--1981\footnote{The first two fascicules were published in 1936
+  and 1937, but we are interested in their second revised editions
+  because they were supplemented by the character set tables.}. Almost
+all of them are digitized but
+  % , to
+  % avoid the risk of infringing the copyright which for this
+  % publication is rather unclear,
+available only for ``digital lending'' in
+ACADEMICA\footnote{\textit{Interlibrary loan system of books and
+    scientific publications}: \url{https://academica.edu.pl/}}
+because, I guess, it's not clear who owns the copyright as this was a
+collaborative effort of several persons (only one contributor is still
+alive) and institutions.
+% To save the
+% space I don't give the bibliographic details here.
+
+In the fascicules every font is illustrated by an excerpt of a text
+and sometimes
+% .  %The fonts discussed in
+% \cite{bułhak:_pierw_florian_ungler1} and %
+% \cite{bułhak:_drug_florian_ungler2}.  are
+additionally by a table of character set, an example of such a table
+is presented on Fig. \ref{fig:table16}.  Most of the tables has been
+prepared by Maria Błońska with some help of Anna Wolińska and Henryk
+Bułhak (the editor of several fascicules), some tables were prepared
+also by Anna Śliwa, Alodia Kawecka Gryczowa (the editor of several
+fascicules) and Paulina Buchwald-Pelcowa (the editor of the whole
+series).  The number of font tables is 76 and the total number of
+glyphs in the tables is over 6 hundred. Unfortunately I missed the
+opportunity to get the first-hand information how the tables were
+prepared when talking by phone with Paulina Buchwald-Pelcowa in 2022
+(she died two years later). Some rudimentary information I got from
+Henryk Bułhak, also in phone calls, but he was able to provide me only
+with a rather general information: the glyphs were cut out with a
+razor blade from photocopies and pasted together. This information
+seems relevant because it shows what kind of mistakes can be expected
+in the tables: if a character occurs in a table then it can be
+displaced or misassigned (cf. sec. \ref{sec:modif-lett-g}), but
+definitely exists in a text, on the other hand some omissions are
+possible. For example, the glyph on Fig.~\ref{fig:cis} is not listed
+in the table on Fig.~\ref{fig:table16}, but can be found in the texts
+printed reportedly with this font; according to Peter Baker the
+meaning is
+\textit{cis}\tburlfootnote{{https://github.com/psb1558/Junicode-font/discussions/255}}.
+
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.9\hsize]{img/Ungler2_pismo16_tab359}
+  \caption{Ungler's second printing house font no 16 (a fragment of
+    Plate 359)}
+  \label{fig:table16}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5ex]{snippets/snippet_Modus_page86x238y1033cum} 
+\caption{The letter or the ligature \textit{cis}? Cf. Fig.~\ref{fig:cis1}}
+  \label{fig:cis}
+\end{figure}
+
+
+
+No comments to the tables are provided, but the order of glyphs is
+sometimes relevant for their interpretation, cf. Fig~\ref{fig:ghi},
+\ref{fig:cec} and \ref{fig:ghhi}.
+
+\begin{figure}
+  \centering
+  \includegraphics[height=5ex]{img/ghhh_Haller-05}
+  \caption{A fragment of Plate 168. The fourth glyph is interpreted as
+    \textit{h}, not a \textit{b}, because of its position in the font
+    table.Cf. sec.~\ref{sec:modif-lett-h}}
+  \label{fig:ghi}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[height=5ex]{img/cecUngler2-14}
+  \caption{A fragment of Plate 357. The last glyph is interpreted as
+    \textit{e} with ogonek because of its position in the font table.}
+  \label{fig:cec}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[height=5ex]{img/ghhi_Augezdecki-13}
+  \caption{A fragment of Plate 411. The third glyph is interpreted as
+    \textit{h} because of its position in the font
+    table.}
+  \label{fig:ghhi}
+\end{figure}
+
+The quality of the glyph images is sometimes
+quite low, I understand no better samples were available.
+
+Early prints used a lot of abbreviations which where the descendants
+of the abbreviations used in manuscripts; we discuss here a subset of
+them called brevigraphs. Quite often they consisted of a regular
+non-modified letter supplemented by a diacritical mark, usually a
+macron or a similar glyph, placed above. It is natural to call them
+composed brevigraphs. On the other hand there are abbreviations in a
+shape of a modified letter or a letter-like symbol; we call them basic
+brevigraphs even if they are accompanied by a diacritical mark.
+
+The work described here consisted primarily in creating computer
+indexes allowing to compare similar characters from the same or
+different fonts, cf. Fig.~\ref{fig:index1}. The indexes and other
+resources are available in a public
+repository\tburlfootnote{https://github.com/jsbien/early_fonts_inventory};
+the repository site contains \textit{Issues} and \textit{Discussions}
+tabs which allow to report mistakes and provide comments.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.4\textwidth]{img/compare}
+  \caption{Comparing characters with \textsf{djview4poliqarp}}
+  \label{fig:index1}
+\end{figure}
+
+
+The paper is considered a progress report for two reasons. First, the
+character indexes should be supplemented by indexes showing their
+meaning and their use in texts, in a similar way as described in
+\cite{jsb23}.  Secondly, I omitted some interesting glyphs because I
+was not sure how to interpret them. An example is presented on
+Fig.~\ref{fig:hhh}: is the last but one glyph a modification of the
+letter \textit{h} or is this just the letter \textit{h} with a
+diacritic mark which happens to touch the letter?
+
+
+\begin{figure}[h]
+\centering
+  \includegraphics[height=5ex]{img/h_Hochfeder-03}
+  \caption{A fragment of Plate 21.  Is the last but one glyph a basic
+    brevigraph?}
+  \label{fig:hhh}
+\end{figure}
+
+
+The obvious question for every basic brevigraph is whether it has been
+assigned a codepoint in the Unicode
+standard\tburlfootnote{https://home.unicode.org/}.  Checking the
+character charts is unfortunately not sufficient for two
+reasons. First, the character name is not intended to provide the full
+information about the character, it should be treated as a more or
+less arbitrary label. Secondly, in principle (the practise is
+sometimes questionable) the standard defines characters, not glyphs,
+and the glyph in a chart is only one of the possible representations
+of the character (an example is given in
+sections~\ref{sec:modif-lett-l}). In consequence it is useful to look
+up also the character proposals and related documents in the Unicode
+Technical Committee Document Registry
+\tburlfootnote{http://unicode.org/L2/} (a similar resource is the
+ISO/IEC JTC1/SC2/WG2
+register\tbsurlfootnote{https://www.unicode.org/wg2/}). It is also
+useful to look for alternative glyphs in specialized fonts,
+cf. sections \ref{sec:modif-lett-r}.
+
+Another interesting question is whether the brevigraph has been
+assigned a codepoint in the Unicode Private Use Area by Medieval
+Unicode Font Initiative\tburlfootnote{https://mufi.info/}. The MUFI
+assignments at first, up to version 4.0, were published as the
+recommendations in the form of PDF documents, cf.
+\cite{haugen15:_mufi1}, they list over 1500 pure Unicode and Private
+Use Area characters in the Latin alphabet of potential use for the
+encoding old text sources.
+%  \tburlfootnote{https://www.menota.org/HB2_A_characters.xml}.
+
+  Now the recommendations have the form of a database which can be
+  browsed online, cf. Fig. \ref{fig:MUFI}. Since some time a subset of
+  the data content is available for download on the Creative Commons
+  Attribution-ShareAlike 4.0 license in the form of a CSV or Jason
+  file.
+  % Some useful resources, e.g. the list of the XML entities, can
+  % be found on the site of Medieval Nordic Text Archive
+  % (MENOTA)\tburlfootnote{https://www.menota.org/HB2_D_schemas.xml\#N10146}.
+  % % python3-demjson
+  % % https://stackoverflow.com/questions/5243885/json-command-line-formatter-tool-for-linux
+  % % jsonlint -f input.json > output.json
+
+
+  We will use here also the resources of \textit{Projet d'Inventaire
+    des Caractères Anciens}\tbsurlfootnote{jacques-andre.fr/PICA/}
+  created and maintained by Jacques André.
+  
+  
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.9\hsize]{img/MUFI_0F0031}
+  \caption{MUFI \uname{LATIN CAPITAL LETTER B RUSTIC FORM} assignment
+    proposal as of 2024-01-01}
+  \label{fig:MUFI}
+\end{figure}
+
+Last but not least, it is important whether a brevigraph can be
+rendered adequatly by a font.  Our primary focus is on Peter Baker's
+Junicode Two font, as it is available on a free
+license\tbsurlfootnote{https://github.com/psb1558/Junicode-font} and
+contains some characters not available elsewhere,
+cf. \cite{bien_representing_2022}. However we use also George Douros'
+Symbola font\tburlfootnote{https://dn-works.com/ufas/} when we need a
+character not available in Junicode.
+
+It is also worth mentioning that some of the brevigraphs discussed
+here has been already used in Gutenberg's bibles. The character set of
+these books has been the subject of several publication, they are
+referenced in \cite{andre15:B42} and
+\cite{bień21:_reper_ungler_polon_typog}.  I found also very useful the
+unpublished text \cite{Bettridge} provided to me kindly by the author
+(it is attached by the Printing Museum in Lyon to digital copies of a
+folio of the Gutenberg Bible purchased by the visitors).
+
+\section{The workflow}
+\label{sec:workflow}
+
+
+It is an old idea of mine to use the fact that for the compression
+purpose the identical or similar shapes are collected into the shape
+dictionaries. It seems that this approach, named mixed raster content,
+is used now in JPEG2000, but the first format to use it succesfully
+was DjVu.
+
+I designed two tools which are based on this approach. The first one
+was a quick and dirty modification of a standard DjVu viewer,
+cf. Fig.~\ref{fig:K-C-e}. It was originally implemented by Michał
+Rudolf twelve years ago, some important contributions were made later
+by Alexander
+Trufanov\tburlfootnote{{https://github.com/jsbien/djview4shapes}}.  It
+is quite good for getting a quick overview of the shapes in a
+document, but it is not convenient enough for analysing them in
+detail\footnote{When the present paper was almost finished, some
+  changes has been made to the program which make it much more
+  useful.}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.4\textwidth]{img/lB42}
+  \caption{\prname{djview-shapes} and Gutenberg's bible}
+  \label{fig:K-C-e}
+\end{figure}
+
+
+The second tools was a sophisticated client-server system. The idea
+was that a data base will store shapes from different documents
+provided by different persons or institutions and accessed remotely by
+interested users. The shapes were exported to a MySQL
+database. Unfortunately the
+client\tburlfootnote{{https://github.com/jsbien/ndt/wiki/z_shapes}}
+was a complete failure, as due to some wrong coding decisions it was
+prohibitively slow.  There was neither opportunity nor sufficient
+motivation to reimplement it in a better way.
+
+%\cite{bien_repertuar_2020}
+
+So when working on the present paper my main tool was Alexander
+Trufanov's \texttt{djvudict}
+program\tburlfootnote{{https://github.com/trufanov-nok/djvudict}} which
+dump a DjVu shape dictionary in an almost human readable form, despite
+the fact that the program does not seem to be fully reliable (e.g.
+for some not yet known reasons some shapes are skipped).
+
+The first step was of course accessing the scans of \textit{Polonia
+  Typographica} and preparing (with \textsf{Gimp}) the images of the
+relevant tables. Then the images has been converted to DjVu (with
+Friedric Foebel's Python~3 fork of
+\textsf{didjvu}\tburlfootnote{github.com/FriedrichFroebel/didjvu})
+and supplemented by appropriate metadata. Next they have been
+processed by \textsf{djvudict}. The primary DjVu file names has the
+form exemplified by
+ \texttt{Augezdecki-01a\_PT08\_403.djvu},
+where
+\texttt{Augezdecki} in the printer name, \texttt{01a} is the font
+number sometimes suplemented by a letter, \texttt{PT08} is the
+identification of the \textit{Polonia Typographica} fascicule and
+\texttt{403} is the plate number (they are numbered continuosly in the
+whole series, a lot of them contain woodcuts of no interest to us).
+The
+\textsf{djvudict} output is placed in the directories with shorter
+names, exemplified by \texttt{Augezdecki-01a}.
+
+A quick and dirty Python program (written, or rather put together from
+pieces of code found on the Internet, by myself) convert the
+\textsf{djvudict} output to an index for the \textsf{djview4poliqarp}
+program (described already in \cite{jsb23} and \cite{Rubricella2023});
+the shape identifiers are preserved. The index contains also the
+results of OCR made with \textit{Tesseract}, but at present, due to
+the lack of appropriate training, they are rather of no use. The files
+names are in the form \texttt{Augezdecki-01a.csv}
+
+The indexes require unfortunately some hand editing with
+\textsf{djview4poliqarp}. The first stage is to create the index named
+in the form \texttt{Augezdecki-01a\_tmp.csv} where the interesting
+elements are marked with `\texttt{+}' in the so called comment field;
+moreover some entries are marked with `\texttt{\#}' which means that
+there is a need to adjust the bounding box; it is not yet clear why it
+is sometimes needed. Moreover some entries are marked with `\texttt{\
+  \^}', they also require adjusting the bounding box, but for a
+different reason: the shapes recognized by the \textsf{DjVu}
+compression algorithm are just connecting components, so diacritics
+are usually separate objects.
+
+The files \texttt{*\_tmp.csv} are processed with \textsf{grep} to put
+the marked entries into the indexes named \texttt{*\_work.csv}, where
+the bounding boxes are adjusted if needed. The files form the basis
+for the intermediate brevigraphs indexes named \texttt{*\_workbr.csv}
+where the entries are supplemented by the brevigraphs names.
+
+The brevigraph names serve purely a technical goal, they allow to
+group the similar brevigraphs together in the \textsf{djview4poliqarp}
+program. However the choice of the names is not obvious. The official
+Unicode names and the Unicode-like MUFI names are cumbersome because
+of their length, e.g. \uname{LATIN SMALL LETTER Q LIGATED WITH FINAL
+  ET}. In consequence I was considering using names derived from the
+XML entity names provided by MUFI also for selected pure Unicode
+characters. Some are short and mnemotechnical, e.g. \verb|&pbardes;|
+(\ucode{A751} latin small letter P with stroke, here BAR, through
+DEScender). Some are short and not mnemotechnical, e.g. \verb|&q3app;|
+(\ucode{E8B4} \uname{LATIN SMALL LETTER Q LIGATED WITH FINAL ET};
+\texttt{3} may suggest the shape of the final \textit{et}, but I have
+no association with \texttt{app}), some are mnemotechnical but rather
+long, e.g. \verb|&lhighstrok;| (\ucode{A749} latin small letter L with
+HIGH STROKe).
+
+After some hesitation I decided to use those names (with `\texttt{\&}'
+and `\texttt{;}' stripped) for my purposes. The crucial factor in
+making the decision was the fact that \textsf{djview4poliqarp} has a
+kind of macro facility, cf. Fig. \ref{fig:abbr}. The configuration
+file\tburlfootnote{~/.config/djview-poliqarp/djview-poliqarp.conf} has
+the \texttt{[edit]} section which can contain appropriate settings.
+
+For technical reasons the names are placed first in the comment field
+and then moved to the entry field with a program.  The final indexes
+have the names in the form of \texttt{*\_br.csv}. An aggregated index
+is also created which is named simply \texttt{brevigraphs.cvs}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.4\textwidth]{img/shortcuts}
+  \caption{Keyboard shorcuts in \textsf{djview4poliqarp}}
+  \label{fig:abbr}
+\end{figure}
+
+
+For characters which are present neither in Unicode nor in MUFI I use
+sometimes the names modified by an exclamation mark or other
+non-alphabetic characters; the character which are difficult to
+identify I handle in an analogical way. Such names don't identify the
+glyphs uniqually, they just point to similar glyphs.
+
+
+The figures in the present paper were prepared in a way similar to
+that used for \cite{Rubricella2023}: a program converts the index of
+the selected glyphs into the
+\textsf{expex}\tburlfootnote{https://www.ctan.org/pkg/expex} code and
+a set of graphic snippets.
+% At first the exhaustive figures were
+% prepared which presented the brevigraph images from all the ???  fonts
+% under consideration. The ???-page paper containing them is available
+% in the repository. For the present paper some figures has been
+% simplified to save the space.
+
+The glyphs in the figures are numbered for reference purposes and
+accompanied by the self-explanatory abbreviations of printing house
+names and font numbers.
+
+
+\section{Non-alphabetic brevigraphs}
+\label{sec:non-alph-brev}
+
+The Fig.~\ref{fig:amp} shows ampersand, the brevigraph which in one of
+its form survived to present time; it is a very old abbreviation of
+the word \textit{et}. It has two forms, both of them are available in
+the Junicode family of fonts: \Ju{\&} (\textsf{Junicode-Regular}) and
+\iJu{\&} (\textsf{Junicode-Italic}). In computer code the first form
+is available at least since ASCII (\textit{American Standard Code for
+  Intermation Interchage}), which was created in 1963. The Unicode
+charts also show only the first form.
+
+\def\CAPTIONamp{Ampersand}
+\input amp
+
+
+The brevigraph presented on Fig. \ref{fig:et} is without any doubt the
+Tironian note \textit{et} (Tironian notes are named after Tiro, the
+secretary of Cicero, who is credited to invent them), used always as a
+separate word. The brevigraph is present in Unicode since verion 3.0
+(published in 1999) as \ucode{204A} \texttt{TIRONIAN SIGN ET} with the
+canonical glyph \Ju{⁊}. The Junicode font has also another variant of
+the glyph, namely \Ju{󰀝} (accessed with OpenType character variant
+feature or just with the code \ucode{F001D}), which is quite close to
+the shape of most glyphs on Fig. \ref{fig:et}. Item 31 on the figure
+is yet another variant, called in the font manual \textit{Tironian et
+  sign later form with bar}, is available in Junicode only with
+OpenType feature \textit{ss10} and the tags
+{\Ju{\&\_\_a;}}{\Ju{\&\_\_1;}}:
+\Ju{\addfontfeature{StylisticSet=10}⁊\&\_\_a;\&\_\_2;}.
+%\Ju{\addfontfeature{StylisticSet=10}\char"204A\char"0E0061\char"0E0032}.
+
+\def\CAPTIONet{Tironian note \textit{et}}
+\input et
+
+
+The brevigraph presented on Fig. \ref{fig:rum} is present in Unicode
+since version 5.1.0 (published in 2000) as \ucode{A75D} \uname{LATIN
+  SMALL LETTER RUM ROTUNDA} with the canonical glyph \Ju{ꝝ}, which is
+quite close to the glyphs on the figure.  It can mean \textit{-rum} or
+\textit{-rom}.
+
+Although the name may suggest that this is a variant of the letter
+\textit{rum}, their shapes have little in common,
+cf. sec.~\ref{sec:modif-lett-r}.
+
+As noted in \cite[p.~130]{andre:halshs-00983575}, Unicode has
+additionally two similar symbols: \ucode{0264} \uname{JUPITER},
+\ucode{1F729} \uname{ALCHEMICAL SYMBOL FOR TIN ORE}. In the Symbola
+font all the tree characters look respectively as: \cSgl{ꝝ}, % rum
+\cSgl{♃} and % JUPITER
+\cSgl{🜩}. They look differently, but this is the decision of the
+contemporary font designer. The glyphs listed on Fig.~\ref{fig:rum}
+probably could represent any of those three characters, this is to be
+checked in the original texts.
+
+
+\def\CAPTIONrum{The letter \textit{rum} rotunda}
+\input rum
+
+All the glyphs on Fig. \ref{fig:is} are in my opinion the variants of
+the character \ucode{A76D} \uname{LATIN SMALL LETTER IS}, which is
+present in Unicode since version 5.1.0 (published in 2000) with the
+canonical glyph \Ju{ꝭ}. Of course their usage should be verified in
+the original texts.
+
+
+\def\CAPTIONis{The letter \textit{is}}
+\input is
+
+
+
+The glyphs on Fig. \ref{fig:us} looking like the digit \textit{9} are
+the instances of the well known brevigraph present in Unicode as
+\ucode{A770} \uname{MODIFIER LETTER US} with the representative glyph
+\Ju{ꝰ}; it was introduced in version 5.1.0 (published in 2008),
+\textit{modifier} means it is not on the baseline. It is used always
+at the end of words. The meaning of the glyphs similar to a circle,
+like U2-09, is to be checked in the texts, as it can be just a raised
+small letter \textit{o}, in Unicode \ucode{1D52} \uname{MODIFIER
+  LETTER SMALL O}.
+
+
+\def\CAPTIONus{The letter \textit{us}}
+\input us
+
+
+The base glyphs on Fig. \ref{fig:con}, despite a slightly different
+shape, can be identified with the character called by MUFI
+\uname{LATIN ABBREVIATION SIGN SMALL CON}
+\cite[s. 29]{haugen15:_mufi1} and in Unicode unified with \ucode{2184}
+\uname{LATIN SMALL LETTER REVERSED C} with the representative glyph
+\Ju{ↄ}. As the name suggests, it meaning is just \textit{con} (perhaps
+with some exceptions).
+
+As for the letter with diacritics, the situation is much more
+complicated. I have not found yet their occurrences in the texts, so I
+don't know their meaning. Another problem is the form of the
+diacritics. Besides a diaresis, we have the diacritic which seem to be
+the same as the one described in \cite{Blake} as \textit{jagged
+  horizontal line} which is encoded in Unicode as \ucode {1DD3}
+\uname{COMBINING LATIN SMALL LETTER FLATTENED OPEN A ABOVE} but
+rendered differently: in Junicode is it \Ju{◌ᷓ} and in Symbola it is
+\Ssgl{◌ᷓ}. Moreover there is an open question what kind of diacritics,
+if any, is used in Ungler's font 10 (items 32 and 33).
+
+
+\def\CAPTIONcon{The letter small \textit{con}}
+\input con
+
+
+\section{Modifications of the letter \textit{b}}
+\label{sec:modif-lett-b}
+
+
+Old texts used many variations of the letter \textit{b}, many of them
+are assigned code points by MUFI.
+Many variants of the letter \textit{b} are also listed in
+\textit{Polonia Typographica}, Fig.~\ref{fig:b} presents those most
+relevant to our purpose.
+
+\def\CAPTIONb{The variants of the letter \textit{b}}
+\input b
+
+We will focus on item 3 (Haller's font no 4) and those from
+Hochfeder's fonts like item 8-17, as their shapes seem to be carefully
+designed while other items seem to be just more or less crude versions
+of it.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=10ex]{img/sublimeB42}%
+  \includegraphics[height=10ex]{img/subB42}
+  \caption{Modified letter \textit{b} in Gutenberg's bible:
+    \textit{sublime} and \textit{substantia} (Bodleian Library copy,
+    page 21 and 64 of volume II)}
+  % highlight 1470,13,19,35
+  \label{fig:Gabbr}
+\end{figure}
+
+
+The character with the almost identical shape appeared already in
+Gutenberg's 42-line Bible. Despite of this it seems it still has no
+name and even no generally accepted description. In
+\cite[p.~12]{andre15:B42} Jacques André proposes the name
+\textit{latin small letter b with flourish} (he considers also an
+alternative one \textit{latin small letter b ligated with arm of latin
+  small r}, but cf. sec.~\ref{sec:modif-lett-h}).
+
+
+According to Gerald Bettridge \cite{Bettridge} it means \textit{bis}
+and, after the long \textit{s}, \textit{ub}, cf. Fig.~\ref{fig:Gabbr};
+cf. also \cite[p.~12]{andre15:B42} and
+\cite[p.~12]{andre22:_inven_unicod_mufi}; it can be ligated with long
+\textit{s}, cf. sec.~\ref{sec:modif-lett-long-1}.
+
+ Looks like it not always is
+a brevigraph, sometimes it is just equivalent to a normal \textit{b},
+cf.~\cite[p.~8]{bień21:_reper_ungler_polon_typog} (or perhaps it was
+just a printer's mistake?).
+
+\section{Modifications of the letter \textit{d}}
+\label{sec:modif-lett-d}
+
+\def\CAPTIONd{The variants of the letter \textit{d}}
+\input d
+
+The similarity of item 6 and e.g. 19 to the item 3 from the
+Fig.~\ref{fig:b} and the item 5 and e.g. 8 from the Fig. ~\ref{fig:h},
+all from respectively the same fonts, seems to be a design decision.
+
+According to Gerald Bettridge \cite{Bettridge} the character also
+appears in Gutenberg's bible with several meanings\footnote{It is not
+  confirmed by \cite{andre15:B42}, perhaps the author was analizing a
+  different edition.}. On the other hand the brevigraph is called
+\textit{d with two ascenders} by Erin Blake in \cite{Blake}; he states
+that the brevigraph stands for
+\begin{quote}
+  \textit{de} and (depending on the language) also for \textit{der},
+  \textit{dis}, \textit{dum} and other \textit{d}-syllables
+\end{quote}
+
+
+Peter
+Baker\tburlfootnote{{https://github.com/psb1558/Junicode-font/discussions/133}}
+suggest to treat the character as MUFI \ucode{F159} \uname{LATIN
+  ABBREVIATION SIGN SMALL DE} (\Ju{}), called also \uname{LATIN SMALL
+  LETTER D ROTUNDA WITH
+  BAR}\tburlfootnote{https://mufi.info/q.php?p=mufi/chars/unichar/61785}.
+He also points to another similar MUFI character, namely \ucode{EBB2}
+\uname{LATIN SMALL LETTER D ROTUNDA WITH ACUTE} \Ju{}.
+
+The meaning of the brevigraph with a dot above is yet to checked in the
+texts.
+
+\section{Modifications of the letter \textit{e}}
+\label{sec:modif-lett-e-2}
+
+\def\CAPTIONe{The variants of the letter \textit{e}}
+\input e
+
+Fig.~\ref{fig:e} presents the well known \textit{e caudata} meaning
+\textit{ae}.  
+
+It is an open controversy whether \textit{e caudata} and the
+contemporary \ucode{0119} \uname{LATIN SMALL LETTER E WITH OGONEK}
+should be considered the same character. Peter Baker
+wrote\tburlfootnote{{http://junicode.sourceforge.net/ecaudata.html}}
+\begin{quote}
+  Perhaps it is time to admit that the Latinate cauda and the ogonek
+  used by Polish and other languages are different beasts.
+\end{quote}
+and provided an OpenType feature (\textsl{ss15}) to distinguish them
+in the Junicode
+font\tburlfootnote{{https://github.com/psb1558/Junicode-font/issues/13}}.
+I have no opinion on this matter.
+
+The meaning of the letter with a bar above is yet to be checked in the
+texts.
+
+\section{Modification of the letter \textit{g}}
+\label{sec:modif-lett-g}
+
+% No idea how to center this figure :-( May ask the author of expex.
+\def\CAPTIONg{The variants of the letter \textit{g}}
+\input g
+
+I have very little to say about the glyphs on Fig.~\ref{fig:g}, as I
+haven't found any occurence of them in a text. On one hand it resemble
+the letters \textit{rum}, cf. sec. \ref{sec:modif-lett-r}, and
+\textit{tum}, cf. sec. \ref{sec:modif-lett-t}. On the other hand it
+reseamble also the glyph from the Fig.~\ref{fig:cis}. Moreover Blake
+\cite{Blake} says that \textit{weird vertical line at end of word}
+means a \textit{s} preceded by a vowel (typically \textit{es} in
+English and \textit{is} in Latin); in other words in Latin it can be
+perhaps considered as the ligature of \textit{g} and the letter
+\textit{is} discussed already in sec.~\ref{sec:non-alph-brev}.
+
+\section{Modifications of the letter \textit{h}}
+\label{sec:modif-lett-h}
+
+\def\CAPTIONh{The variants of the letter \textit{h}}
+\input h
+
+The similarity of item 3 and the item 7 on Fig.~\ref{fig:h} to
+respectively the item 3 and t from Fig.~\ref{fig:b} and the item 6 and
+e.g. 19 from Fig. ~\ref{fig:d}, all from the same font, seems to be a
+design decision.
+
+The character with the almost identical shape appeared already in
+Gutenberg's 42-line Bible. In MUFI recommendation it is identified as
+\ucode{E8C3} \uname{LATIN SMALL LETTER B LIGATED WITH ARM OF LATIN}
+(\Ju{}). Jacques André \cite[p.~17]{andre15:B42} notes that the name
+is strange and I agree with him.
+
+% s. 41 B42 ?
+
+The glyphs on Fig.~\ref{fig:h} seem to be the same as those described
+as \textit{h with a tick on top} by Blake, who states
+\begin{quote}
+  Stands for \textit{h}-syllables like \textit{han}, \textit{het}, and
+  \textit{hic}
+\end{quote}
+
+Another interpretation was presented by Lisa Howarth on the Facebook
+The Paleography Society
+group\tbsurlfootnote{facebook.com/groups/7687162686/permalink/10158299890607687}:
+\begin{quote}
+  When attached to an 'h', it usually means 'er' or 'ab' depending on the word
+\end{quote}
+She considers the glyph to be composed from the letter \textit{h} and
+an diacritical sign, similarily as Peter
+Baker\tburlfootnote{{https://github.com/psb1558/Junicode-font/discussions/133}}
+who identifies the diacritics as \ucode{0335} \uname{COMBINING SHORT
+  STROKE OVERLAY} (\Ju{◌̵}). 
+
+\section{The modification of the letter \textit{l}}
+\label{sec:modif-lett-l}
+
+
+\def\CAPTIONl{The variants of the letter \textit{l}}
+\input l
+
+Reportedly the glyphs on Fig.~\ref{fig:l} have the same meaning as
+\ucode {A749} \uname{LATIN SMALL LETTER L WITH HIGH STROKE} (\Ju{ꝉ})
+and therefore a separate code point has not been
+assigned\tburlfootnote{https://github.com/psb1558/Junicode-font/issues/4}. However
+the Junicode font contains at the code point \ucode{F000F} the glyph
+\textit{l with high stroke ending with flourish} (\Ju{󰀏}) accessible
+also as \textit{l} with the tags rendered here as
+{\Ju{\&\_\_s;}}{\Ju{\&\_\_f;}} (actually they are \ucode{E0073}
+\ucode{E0066}, OpenType feature \textsf{ss10} is required to be
+selected).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=10ex]{img/snippet_l_B42}
+  \caption{Modified letter \textit{l} in Gutenberg's bible:
+    according to \cite{Bettridge} \textit{iherusalem} 
+    (Bodleian Library copy,
+    page 574 of volume II)}
+  % highlight 1470,13,19,35
+  \label{fig:lB42}
+\end{figure}
+
+The character with the almost identical shape appeared already in
+Gutenberg's 42-line Bible, cf. Fig.~\ref{fig:lB42}.
+
+
+
+\section{Modifications of the letter \textit{p}}
+\label{sec:modif-lett-p}
+
+\def\CAPTIONpbardes{The letter \textit{p} with stroke}
+\input pbardes
+
+
+Fig \ref{fig:pbardes} contains the variants of a well known brevigraphs,
+which is available in Unicode since version 5.1.0 (published in 2008)
+as \ucode{A751} \uname{LATIN LETTER P WITH STROKE THROUGH DESCENDER}
+with the representative glyph \Ju{ꝑ}.  The brevigraph is ambiguius,
+the most popular meanings are \textit{per}, \textit{par} and
+\textit{por}; it can be used as an individual word or as a prefix.
+
+
+\def\CAPTIONpflour{The letter \textit{p} with flourish}
+\input pflour
+
+
+The base characters on Fig \ref{fig:pflour} are also the variants of a
+well known brevigraphs, which is available in Unicode since version
+5.1.0 (published in 2008) as \ucode{A753} \uname{LATIN LETTER P WITH
+  WITH FLOURISH} with the representative glyph \Ju{ꝓ}.  The brevigraph
+is also ambiguous, the most popular meanings are \textit{pro} and
+\textit{por}; it can be used as an individual word or as a prefix.
+
+
+The last characters are included in the MUFI recommendation as
+\ucode{EED7} \uname{LATIN SMALL LIGATURE PP WITH FLOURISH} with the
+glyph \Ju{}, the meaning is \textit{prop-}.
+
+The meaning of the characters with diacritics is yet to be checked in
+the texts. 
+
+\section{Modifications of the letter \textit{q}}
+\label{sec:modif-lett-q}
+
+
+\def\CAPTIONqbardes{The letter \textit{q} with stroke through descender}
+\input qbardes
+
+The glyphs on Fig. \ref{fig:qbardes} represent a well-known
+brevigraphs, which is included in Unicode since version 5.1.0
+(published in 2008) as \ucode{A757} \uname{LATIN SMALL LETTER Q WITH
+  STROKE THROUGH DESCENDER} with the representative glyph \Ju{ꝗ}.  It
+can be used as an individual word or as part of it and is quite
+ambiguous, the reported meanings are \textit{quam}, \textit{que},
+\textit{quan-} and
+\hbox{\textit{qui-}}.
+
+\def\CAPTIONqslstrok{The letter \textit{q} with diagonal stroke}
+\input qslstrok
+
+The Fig. \ref{fig:qbardes} demonstrates also various kinds of
+diacritical marks which can be used with this brevigraph. The meanings
+of modified brevigraphs is not clear and requires some further
+research.
+
+
+The characters on Fig. \ref{fig:qslstrok} are in my opinion the
+variants of the brevigraph introduced to Unicode in version 5.1.0
+(published 2008) as \ucode{A759} \uname{LATIN SMALL LETTER Q WITH
+  DIAGONAL STROKE} with the representative glyph \Ju{ꝙ}, although such
+a classification of some shapes is questionable.  The Unicode name is
+not very adequate, in \cite[p.~70]{andre22:_inven_unicod_mufi} the
+name \uname{latin small letter q with swash} is proposed.  The
+brevigraph has three meaning: \textit{quod}, \textit{qui} and
+\textit{que}; it can be used as an individual word or as a part of it.
+
+The meanings of modified brevigraphs with diacritical marks is not
+clear. Here we will only mention that in
+\cite[p.~71]{andre22:_inven_unicod_mufi} a glyph similar to those from
+the Fig. \ref{fig:qslstrok} is classified as \uname{LATIN SMALL LETTER
+  Q WITH SWASH AND LATIN SMALL LETTER FLATTENED OPEN A ABOVE} (an
+alternative name \uname{LATIN SMALL LETTER Q WITH FLOURISH \ldots} is
+also considered), and an example is given where the brevigraph means
+\textit{quan-}.
+
+\def\CAPTIONqet{The letter \textit{q} with with final \textit{et}}
+\input qet
+
+The glyphs presented on Fig.~\ref{fig:qet} represent the brevigraph
+assigned a Private Use Area code \ucode{E8BF} and the name
+\uname{LATIN SMALL LETTER Q LIGATED WITH FINAL ET} by MUFI in the
+version 4 of the recommendation \cite[p. 81]{haugen15:_mufi1}, in the
+Junicode font rendered as \Ju{}.
+
+Finding the meaning of the brevigraph with a diacritical mark requires
+some additional research. We will only note that according to
+\cite{Blake} some of the glyph from Fig. \ref{fig:qet} mean
+\textit{quam} or \textit{quan}.
+
+\section{Modifications of the letter \textit{r}}
+\label{sec:modif-lett-r}
+
+
+
+\def\CAPTIONrrum{The alternative glyphs of the letter \textit{rum}}
+\input rrum
+
+
+The first glyph on Fig.~\ref{fig:rrum} is an interesting and rather
+little known character. Although this is far from obvious, it is
+\ucode{A775} \uname{LATIN SMALL LETTER RUM} despite the fact that the
+representative glyph is \Ssgl{`ꝵ'}, as in Junicode we have \Ju{ꝵ} ---
+the glyph practically identical to that on the figure. The charactert
+was introduced to Unicode in version 5.1 (published in 2008), together
+with some other similar character, cf. sec.~\ref{sec:modif-lett-t}. I
+assume the second glyph on the figure is just a variant of the first
+one.
+
+\def\CAPTIONresp{The alternative glyphs of the letter \textit{response}}
+\input resp
+
+
+The glyphs on Fig.~\ref{fig:resp} are ambiguous.  They can represent
+\ucode{A776} \uname{LATIN LETTER SMALL CAPITAL RUM} (\Ssgl{ꝶ}), but
+they can also be interpreted as \ucode{211E} \uname{PRESCRIPTION TAKE}
+(\Ju{℞}) and, last but not least, \ucode{211F} \uname{RESPONSE}
+(\Ju{℞}) which in prayer books can be paired with \textit{versicle}
+character, cf. sec.~\ref{sec:modif-lett-v}.
+
+
+\section{Modifications of the letter long \textit{s}}
+\label{sec:modif-lett-long-1}
+
+\def\CAPTIONslongflour{Long \textit{s} with flourish}
+\input slongflour
+
+
+The glyphs on Fig.~\ref{fig:slongflour} are noted in the MUFI
+recommendations as \mcode{E8B7} \uname{LATIN SMALL LETTER LONG S WITH
+  FLOURISH}~(\Ju{}).
+
+
+The glyphs on Fig.~\ref{fig:slonget} are present neither in Unicode
+nor in the MUFI recommendation, but they are obviously the long
+\textit{s} (\ucode{017F}) ligated with the final \textit{et}
+(\ucode{A76B}). As far as I know, this ligature is available only in
+the Junicode
+font\tburlfootnote{https://github.com/psb1558/Junicode-font/discussions/140}
+with the Historic Ligature (\textit{hlig}) feature:
+\Ju{\addfontfeature{Ligatures=Historic}ſꝫ}.
+%\newcommand{\hlig}[1]{{\addfontfeature{Ligatures=Historic}#1}}
+Th meaning is \textit{sed}, as exemplified in \cite[example
+(68)]{Rubricella2023errata}.
+
+\def\CAPTIONslonget{Long \textit{s} with final \textit{et}}
+\input slonget
+
+\def\CAPTIONslongx{Long \textit{s} with final \textit{et}?}
+\input slongx
+
+Fig. \ref{fig:slongx} shows a problematic glyph which I'm not sure how
+to interpret.
+
+
+\def\CAPTIONslongb{The ligature of long \textit{s} with the letter
+  \textit{b} and its modifications} \input slongb
+
+One of the component characters of the ligatures presented on
+Fig.~\ref{fig:slongb} has been already mentioned in
+sec.~\ref{sec:modif-lett-b}. We see also the letter \textit{b} with a
+dot above; the meaning of the letter, ligated or not, is yet to be
+investigated.
+
+  It is worth noting that in item 18 instead of a normal long
+  \textit{s} we have a \uname{LONG FUNNY S} proposed to be included in
+  the MUFI recommendation\tburlfootnote{https://mufi.info/q.php?p=mufi/chars/unichar/1048876}.
+  
+  \def\CAPTIONslongl{The ligature of long \textit{s} with 
+   the letter \textit{l} with flourish?}
+ \input slongl
+
+ On Fig.~\ref{fig:slongl} we have a ligature which can be perhaps
+ treated as a variant of MUFI \ucode{E8AF} \uname{LATIN SMALL LIGATURE
+   LONG S L WITH DIAGONAL STROKE} (\Ju{}).
+
+\section{Modifications of the letter \textit{t}}
+\label{sec:modif-lett-t}
+
+\def\CAPTIONtum{The letter \textit{tum}}
+\input tum
+
+The Fig.~\ref{fig:tum} shows the rather rare brevigraph, namely
+\ucode{A777} \uname{LATIN SMALL LETTER TUM} with the representative
+glyph \Ju{ꝷ}.  It was introduced in version 5.1 (published in 2008),
+together with some related letters such as \ucode{A775} \uname{LATIN
+  SMALL LETTER RUM}, cf. sec.~\ref{sec:modif-lett-r}.
+
+\section{Modification of the letter v}
+\label{sec:modif-lett-v}
+
+\def\CAPTIONv{The letter \textit{v} with diagonal stroke} \input v
+
+The primary interpretation of the glyphs on Fig.~\ref{fig:v} seems to
+be \ucode{A75F} \uname{LATIN SMALL LETTER V WITH DIAGONAL STROKE}
+(\Ju{ꝟ}) added to Unicode in version 5.1.0 (published in 2008); in
+item 14 it is the other arm which is crossed.  It means \textit{ver}
+or \textit{vir}.
+
+The glyphs can stand also for \ucode{2123} \uname{VERSICLE} (\Ju{℣}),
+used to mark in the prayer books the beginning of a versicle, i.e.  a
+short sentence said or sung by the minister in a church service, to
+which the congregation gives a response\footnote{The definition
+  provided by Google in a non-linkable form.}.
+
+
+\section{Final remarks}
+\label{sec:final-remarks}
+
+As it was already mentioned, the next step should be to find the
+occurences of the discussed brevigraphs in the texts and in this way
+to find or verify their meaning. We don't need for this the full
+transcriptions of the texts.  What is sufficient for our purposes is
+\textit{glyph} or \textit{character} \textit{spotting}. These tasks
+are discussed in some publications, but there seem to be no tool
+available directly for use. With some limitation a variant of a
+workflow described earlier can be used for this purpose. The
+\textsf{djvudict} can be converted to a PDF document (created of
+course with \TeX{}) with enlarged glyphs which make relatively easy to
+search for interesting items and to note their identifiers,
+cf. Fig.~\ref{fig:page}. Additionally an \textsf{djview4poliqarp}
+index can be created, which uses the shape identifier as the
+searchable entry fields, cf. Fig.~\ref{fig:cis1}.  The identifiers are
+not unique, nevertheless it is possible with some effort to find the
+context of a shape in the document, as illustrated on the Figures
+\ref{fig:page} and \ref{fig:cis1} (please note the shape
+\texttt{01344}).
+
+\begin{figure}[ht]
+  \flushleft
+\includegraphics[width=\hsize]{img/page_017_10.pdf}
+  \caption{The \textsf{djvudict} output in the form of a PDF document}
+  \label{fig:page}
+\end{figure}
+
+\begin{figure}[ht]
+  \flushleft
+\includegraphics[width=\hsize]{img/cis}
+  \caption{The \textsf{djvudict} output in the form of a \textsf{djview4poliqarp} index}
+  \label{fig:cis1}
+\end{figure}
+
+At present my programs supporting this approach are too primitive to
+be used conveniently, but I will try to improve them.  A help of
+Python and QT programmers (QT was used to implement
+\textsf{djview4poliqarp} and \textsf{}\textup{djview4shapes}) would be
+welcomed and appreciated.
+
+\small
+\def\url{\tburl}
+\SetBibJustification{\raggedright \advance\itemsep by 1pt plus1pt minus1pt }
+\bibliographystyle{tugboat}
+%\nocite{book-minimal}      % make the bibliography non-empty
+\bibliography{brevigraphsPT}       % xampl.bib comes with BibTeX
+
+\makesignature
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% ispell-local-dictionary: "english"
+%%% TeX-master: t
+%%% coding: utf-8-unix
+%%% TeX-PDF-mode: t
+%%% TeX-engine: luatex
+%%% End:

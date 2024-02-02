@@ -1,0 +1,1218 @@
+\tracinglostchars=3
+\RequirePackage{snapshot}
+\documentclass[final]{ltugboat}
+\ifx\tubdots\undefined \else \let\dots\tubdots \let\ldots\tubdots \fi
+\setcounter{topnumber}{20} % allow lots of figures at top of page
+\setcounter{dbltopnumber}{20}
+\setcounter{totalnumber}{20}
+\renewcommand{\topfraction}{.8}
+\renewcommand{\dbltopfraction}{.8}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks,pdfa]{hyperref}
+\usepackage{relsize}
+\usepackage{expex}
+
+%%% Start of metadata %%%
+
+\title{Towards an inventory of old print characters: Ungler's
+  \textit{Rubricella}, a case study (errata %published in ???
+  incorporated)}
+
+\author{Janusz S. Bień}
+\address{Warsaw, Poland}
+\netaddress{jsbien (at) uw.edu.pl}
+\personalURL{sites.google.com/view/jsbien}
+\ORCID{0000-0001-5006-8183}
+% To receive a physical copy of the TUGboat issue, please include the
+% mailing address we should use, as a comment if you prefer it not be printed.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Janusz Bień
+% Bacewiczówny 2 m. 45
+% 02-786 Warszawa
+% Poland
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of metadata %%%
+
+% I do not insist on using color.
+\usepackage{xcolor}
+
+\newfontfamily{\Junicode}{Junicode-Regular.ttf}[ItalicFont=Junicode-Italic.ttf]
+\newfontfamily{\JunicodeI}{Junicode-Italic.ttf}
+\newfontfamily{\JunicodeB}{Junicode-Bold.ttf}
+
+\newfontfamily\cJ[Color=black]{Junicode-Regular.ttf} % violet
+\newcommand{\Ju}[1]{{`\cJ#1}'}
+\newcommand{\Junq}[1]{{\cJ#1}} % no quote
+
+\newfontfamily{\Symbola}{Symbola_hint.ttf}%[Path=/usr/share/fonts/truetype/ancient-scripts/]
+% Any other font with the appropriate coverage will do
+% \Ssgl{⧺} (\ucode{29FA} \uname{DOUBLE PLUS}) to mark a missing
+% beginning or ending of a word, and \Ssgl{⋯} (\ucode{22EF}
+% \uname{MIDLINE HORIZONTAL ELLIPSIS}) to mark a whole missing
+% word. Moreover I use \Ssgl{⚠} (\ucode{26A0} \uname{WARNING SIGN})
+
+
+\newcommand{\uname}[1]{{\textsc{\MakeLowercase{#1}}}}
+\newcommand{\ucode}[1]{{\acro{U+#1}}}
+\newcommand{\mcode}[1]{{\acro{M+#1}}}
+\newcommand{\prname}[1]{{\textsf{#1}}}
+% \catcode`\_=12
+
+% % glyph
+% \setlength{\fboxsep}{2pt} % default 3pt, reduce clashes
+% \newcommand{\gl}[1]{\fbox{\Junicode\addfontfeature{StylisticSet=10}#1}}
+% % simple glyph (no box)
+% %\newcommand{\sgl}[1]{{\mtags{#1}}}
+% \newcommand{\sgl}[1]{{\Junicode\addfontfeature{StylisticSet=10}#1}}
+ \newcommand{\sgl}[1]{{\Junicode#1}}
+% %  simple glyph (no box) in italics
+% \newcommand{\sgli}[1]{{\JunicodeI\addfontfeature{StylisticSet=10}#1}}
+
+% % Junicode input
+% %\newcommand{\Ji}[1]{{\JunicodeMagenta\textbf{#1}}}
+% \newcommand{\Ji}[1]{{\JunicodeB #1}}
+
+% % Symbola (or equivalent) glyph
+% \newcommand{\Sgl}[1]{\fbox{\Symbola #1}}
+% Symbola (or equivalent) simple glyph (no box)
+\newcommand{\Ssgl}[1]{{\Symbola #1}}
+
+\usepackage{relsize}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  The goal of the paper is twofold.  One goal is to present a minor
+  contribution to the task of describing the character inventory of a
+  16th century Polish printing house; for this purpose it is necessary
+  to present also some theoretical aspects of the task. Another one is
+  to discuss the use of \XeLaTeX{} and other tools in the author's
+  workflow.
+\end{abstract}
+
+
+\section{Introduction}
+\label{sec:introduction}
+
+The idea to create the inventory of characters for Polish early
+printing houses dates back to 1920.
+It was proposed by Ludwik
+Bernacki \cite{bernacki20:_monum},\footnote{It is worth noting that
+  the idea of an inventory has been proposed
+  independently from time to time, e.g.\ \cite{Cassetin2003}.}
+probably inspired by
+Konrad Haebler's \textit{Typenrepertorium der Wiegendrucke}, which
+started to appear in
+1905.\footnote{\tbsurl{tw.staatsbibliothek-berlin.de/}}
+
+The 12 volumes of the series entitled \textit{Polonia Typographica
+  Saeculi Sedecim} published in 1936--1981 were an attempt to implement
+this concept. According to
+\cite{johnson65:_polon_typog_saecul_sedec}, the layout of the tables
+followed the publications of \textit{Gesellschaft für
+  Typenkunde}.\footnote{\raggedright
+  \tbsurl{https://worldcat.org/search?q=au=Gesellschaft\%20fu\%CC\%88r\%20Typenkunde\%20des\%20XV\%20Jahrhunderts
+%  -Wiegendruckgesellschaft
+%worldcat.org/identities/nc-gesellschaft fur typenkunde des xv
+%jahrhunderts berlin
+}}  Since volume
+\acro{III}, the fonts were documented not only with text samples, but also
+with tables of characters
+(Fig.~\ref{fig:Ungler1_pismo01_tab112}); reportedly they were
+created by cutting out the characters from
+copies with a razor blade and pasting them together.
+
+\begin{figure}[ht]
+  \centering
+%  \includegraphics[width=0.9\textwidth]{imgR/Ungler1_pismo01_tab112}
+  \includegraphics[width=0.9\hsize]{imgR/Ungler1_pismo01_tab112}
+  \caption{\textit{Polonia Typographica \acro{III}} %
+    (\cite{bułhak:_pierw_florian_ungler1}), fragment of plate
+    112: font number 1}
+  \label{fig:Ungler1_pismo01_tab112}
+\end{figure}
+
+With the exception of the small samples included in the publications
+(probably photozincography was used), the authors of the series worked
+with original prints. In the meantime many of those prints have been
+digitized and are available on the Internet. Hence it is possible to
+compare the character sets provided in \textit{Polonia Typographica}
+with the texts which are supposed to use them. The first (and for the
+time being the only) such attempt, described in
+\cite{bień21:_reper_ungler_polon_typog}, concerned the so-called font (in
+Polish paleo\-typographical terminology \textit{pismo}) number 1 of Florian
+Ungler’s first printing shop (1510–1516). It revealed some surprising
+discrepancies.
+
+According to the editor of the third volume of \textit{Polonia
+  Typographica} \cite{bułhak:_pierw_florian_ungler1}, the font in
+question was used in only three publications,\footnote{I take this claim
+  for granted, but it would be nice to verify it.} all of them digitized
+  by now:
+\begin{enumerate}\frenchspacing\raggedright
+\item 
+  \textit{Algorithmus} [\ldots] by Sacro Bosco (1511):
+\cite{sacro11:_algor_ioann_de_sacro_busto},
+\item \textit{Almanach ad a. 1511} by Aurifaber:
+ \cite{cracoviensis11:_alman}, 
+\item \textit{Rubricella
+  dioecesis Cracoviensis ad a. 1511} (author unknown):
+\cite{nieznany10:_rubric_cracov}. 
+\end{enumerate}
+We will focus here on the third item, see Fig.~\ref{fig:Rubr} (the
+page format is \textit{plano}, an unfolded
+sheet;\tburlfootnote{http://ihl.enssib.fr/paper-and-watermarks-as-bibliographical-evidence/the-shape-of-paper}
+I don't know the exact size) which was used in
+\cite{bień21:_reper_ungler_polon_typog} in a very limited way.
+
+ \begin{figure*}
+   \centering
+   \includegraphics[height=.97\vsize,trim=15 15 15 15,clip]{imgR/Rubricella}
+   \caption{\textit{Rubricella
+  dioecesis Cracoviensis ad a.\ 1511}}
+   \label{fig:Rubr}
+ \end{figure*}
+
+ The print quality is low, the font is worn out, so for many letters
+ the impression of the typeface is incomplete or distorted in some
+ other way. Unfortunately there is no information about the earlier
+ uses of the font (Ungler came to Poland from Bavaria).
+
+\section{Typemes}
+\label{sec:typemes-1}
+It is far from clear what the basic units of texts are (and how they
+should be called),
+especially when working with old texts.
+
+To account for different user needs, in
+\cite[p.~22]{robinson06:_guidel_trans_manus_wife_baths_prolog} four
+levels of transcriptions were identified: graphic, graphetic,
+graphemic and regularized. A different classification is used in
+\cite[p.~4]{romein_c_annemieke_2022_7267245} which, for so-called
+Ground-Truth texts, distinguishes diplomatic,\footnote{The adjective is
+  derived from \textit{diplomatics}
+  (\tbsurl{en.wikipedia.org/wiki/Diplomatics}), not
+  \textit{diplomacy}.} semi-diplomatic and hyper-diplomatic
+transcriptions.  Indeed, talking about transcription levels is not
+precise; there is a whole multi-dimensional space of transcriptions
+differing in independent aspects of editing (e.g.\ are ligatures
+preserved? Are abbreviation marks resolved? Are misprints corrected?).
+
+Our primary goal is the ``typemic'' transcription, representing a text
+as a sequence of typemes in the sense of Jacques André.  He introduced
+the notion of typeme (in French, \textit{typème}) in
+\cite{typemes2022}, and elaborated on it in
+\cite{andre:halshs-00983575}, where the notion of typemic transcription
+was introduced. Specific typemes are listed in several
+draft technical notes by André, available at
+\tbsurl{jacques-andre.fr/PICA/}. The most recent
+\cite{andré22:_inven_unicod_mufi} lists 1172 typemes. The typeme is
+described as the ``cast character'', considered regardless of the design
+and size, in other words the typemes are the glyphs of characters
+present in the [metal]
+typefaces.\footnote{From \cite[p.~4]{andré22:_inven_unicod_mufi}:
+  \textit{«caractère fondu» mais sans tenir compte ni du dessin, ni de
+    la taille des caractères. On peut dire que ce sont les glyphes des
+    caractères présents dans les polices de caractères au sens
+    original d’inventaire (décompte des sortes)}.
+    Incidentally, the notion of
+  typeme in other meaning has been used by a Swedish linguist Göran
+  Hammarström, but this is not relevant to our purposes.}
+
+In other words, we want to represent precisely the print types/sorts
+of the text transcribed.
+
+The typemes are
+assigned the code points of the Unicode characters if appropriate ones
+exist, sometimes in the case of polysemic glyphs
+(\cite[p.~129]{andre:halshs-00983575}) in an arbitrary way.
+
+Usually it is not sufficient to provide users with only one type of
+transcription. If the document is available on a server, then usually the
+server software allows switching between various transcriptions. It is
+desirable to have a similar option for documents downloaded
+on a local computer. Theoretically \PDF\ can be used for this, as
+multiple layers of text are allowed, e.g.\ for engineering and other
+applications. An example of a different idea for presenting multiple
+aspects of old texts in a single \PDF\ document is discussed in
+\cite{10.1007/978-3-030-91669-5_5}.   In DjVu
+documents, it might be useful to use the hidden text layer for the
+typemic transcription and the
+annotations to provide another version of the transcription, but this
+is outside the scope of this paper.
+
+\section{Workflow}
+\label{sec:workflow}
+
+
+\subsection{The sources}
+\label{sec:sources}
+
+Latin \textit{rubricella} (in Polish
+\textit{rubrycela}\footnote{\tbsurl{pl.wikipedia.org/wiki/Rubrycela}})
+is another name of the \textit{Directorium Divini
+  Officii}\footnote{\tbsurl{en.wikipedia.org/wiki/Directorium}}
+or \textit{Ordo Divini Officii}; the rubricellae discussed here have a
+very simple form.
+
+In the digital library, the rubricella we're concerned with is
+accompanied by three pages of a
+typewritten text reconstructing the fragments missing (the page has
+been trimmed) or damaged; the reconstruction was based on another
+rubricella for this year printed by another printer, namely Jan
+(Johann) Haller, and preserved in the Jagiellonian Library as
+\textit{Cim.\ vol.~4}.  It is not digitized, but Jacek Patryka, the
+head of Old Prints Section, kindly provided me with a high quality
+photo.
+
+The reconstruction was not based directly on Haller's rubricella, but
+on ``Sawicki's copy''. At first this remark was unclear to me, but
+later Mark Thakkar on the Facebook group of \textit{The Paleography
+  Society} pointed Sawicki's book out to me
+\cite{sawicki45:_statut_jana_konar}, which contains the full text of
+Haller's rubricella (following common editorial practice, almost
+all abbreviations have been resolved and expanded).
+
+Although the content of the rubricella is in principle not relevant to
+the character inventory, I compared the sources, creating a
+parallel text, as shown in Fig.~\ref{fig:RubrParallel}: Haller's
+% essential correction!
+rubricella in Sawicki's transcription,
+reconstructed Ungler's rubricella transcription, original Ungler
+rubricella typemic transcription.  In particular, this
+allowed for resolving some non-obvious abbreviations. On the
+other hand the parallel text revealed some strange discrepancies, but
+this is outside the scope of this paper.
+
+ \begin{figure*}
+   \centering
+   \includegraphics[width=\hsize,trim=0 62 0 0,clip]
+% what changed and why?:
+     {imgR/Rubricella_parallel_page4-crop.pdf}
+   \caption{The parallel text of the rubricella versions}
+% /home/jsbien/git/repertuarXVI/Rubricella/Rubricella_parallel.pdf
+   \label{fig:RubrParallel}
+ \end{figure*}
+
+ The parallel text was typeset using
+ \texttt{expex}\footnote{\tbsurl{ctan.org/pkg/expex}} by John
+ Frampton; according to its author's description \textit{The package
+   provides macros for typesetting linguistic examples and glosses,
+   with a refined mechanism for referencing examples and parts of
+   examples}. The name is derived from the names of the two basic
+ commands, \verb+\ex+ and \verb+\pex+, which in turn are abbreviations of
+ \textit{example} and \textit{parts example}.
+
+% dvgloss – Facilities for setting interlinear glossed text
+
+\subsection{Image preprocessing}
+\label{sec:image-preprocessing}
+
+% Eliminating controversial "plano"
+Working with a very large page would be cumbersome even on a large
+display, so I decided to split the page into five parts, in reading
+order: the initial single column text, the left narrow column, the
+left half-page column, the right narrow column, the right half-page
+column. The digital library provides the document in the DjVu format
+(once very popular\footnote{To make a long story short, the original
+  reasons for creating it are no longer valid, but it is still the
+  best format for some purposes; see, e.g.\ \cite{bc71}.})  but there
+are no tools for such editing in this format.  Hence the document was
+exported as a graphic file with
+\textsf{djview}\footnote{\tbsurl{djvu.sourceforge.net/djview4.html}}
+and split into \PNG\ files with Gimp.\footnote{\tbsurl{gimp.org/}}
+
+The transcription process described below for unknown reason degrades
+the scan quality. Therefore they were also converted to a DjVu
+document with the \textsf{didjvu} program. The program was
+written by Jakub Wilk, who no longer maintains it, in Python~2. I am
+using now Friedric Foebel's Python~3
+fork.\footnote{\tbsurl{github.com/FriedrichFroebel/didjvu}}
+
+
+\subsection{The transcription}
+\label{sec:transcription}
+
+For transcription the so-called Expert Client to the Transkribus
+system\footnote{\tbsurl{readcoop.eu/transkribus/}. The Expert
+  Client is no longer supported as it has been phased out by a Web
+  interface. The formal status of the system is complicated. Some
+  tools are open source and free (\tbsurl{github.com/Transkribus/}),
+  while the use of other
+  tools is charged per page.} was used;
+see Fig.~\ref{fig:Trans}.
+
+It is worth mentioning that the Optical Character Recognition feature,
+understood literally, is no longer in use. It was replaced by neural
+network tools, usually named Handwritten Text Recognition (\acro{HTR}), which
+operate on the whole lines of texts. Although the results of \acro{HTR} are
+often quite impressive, the segmentation into characters and even
+words is not needed for these algorithms. The tools for such
+detailed segmentations are not available easily, at least I did not
+find any such tool appropriate for my goals.\footnote{%
+  In particular, the Glyph Miner software package
+  (\tbsurl{https://github.com/benedikt-budig/glyph-miner/}) looked
+  quite promising, but its use appeared prohibitively difficult,
+  primarily because of the lack of sufficient documentation
+  (\tbsurl{https://github.com/benedikt-budig/glyph-miner/discussions/14}).}
+
+The images created with Gimp and uploaded to Transkribus are
+segmented into text lines automatically, but the low quality of the
+print confused the algorithm quite often, so extensive manual
+corrections were needed.\footnote{For the reasons mentioned,
+  Transkribus does not provide a tool for an automatic word
+  segmentation. It is possible to do it by hand, but it is rather
+  cumbersome, so I preferred to defer this operation to a later stage
+  of the workflow.}
+
+
+ \begin{figure*}
+   \centering
+   \includegraphics[width=\hsize]{imgR/Transkribus}
+   \caption{The transcription window of Transkribus Expert Client}
+   \label{fig:Trans}
+ \end{figure*}
+
+
+ In the transcription I use \Ssgl{⧺} (\ucode{29FA} \uname{DOUBLE
+   PLUS}) to mark a missing beginning or ending of a word, and
+ \Ssgl{⋯} (\ucode{22EF} \uname{MIDLINE HORIZONTAL ELLIPSIS}) to mark a
+ whole missing word. Moreover I use \Ssgl{⚠} (\ucode{26A0}
+ \uname{WARNING SIGN}) to mark fragments which require special
+ attention, and I use \Ssgl{�} \ucode{FFFD} \uname{REPLACEMENT
+   CHARACTER} for illegible characters.
+
+I didn't aim at a perfect transcription; it is good to
+ delay some decisions to a later stage.
+
+ Transkribus supports exporting the transcription in several formats.
+ The ultimate format for me is the DjVu format mentioned earlier.
+ I quite often exported a \PDF\ file, with the \textit{images plus text
+   layer} option selected, until I encountered a problem with the (no
+ longer maintained) \textsf{pdf2djvu}
+ program by Jakub Wilk.\footnote{\tbsurl{github.com/jsbien/pdf2djvu/issues/1}}
+
+ So, this time I decided to export the transcription in the \acro{ALTO} format
+ (\textit{Analyzed Layout and Text
+   Object})\footnote{\tbsurl{loc.gov/standards/alto/}}
+with the option \textit{Split Lines Into Words}.
+
+It should be noted that recognizing words in old prints without
+understanding the text or using a dictionary is close to impossible,
+because of inconsistent use of the horizontal
+(interword\slash interletter) spaces. I don't know what algorithm is used by
+the \acro{ALTO} export but the results, at least for \textit{Rubricella},
+were unfortunately not satisfactory and required manual adjustment,
+which was done during the indexing phase.
+
+
+ The \acro{ALTO} files (one file for each page) were converted first to
+ \textit{h\acro{OCR}} (\cite{BREU2007}) with the \textsf{ocr-transform}
+ tool.\footnote{\tbsurl{github.com/UB-Mannheim/ocr-fileformat}}
+
+ The next step was using the \textsf{html2djvused} program. Originally
+ written by Jakub Wilk in Python~2 and distributed with
+ \textsf{ocrodjvu},\footnote{\tbsurl{github.com/jwilk-archive/ocrodjvu}}
+ it is no longer maintained by him.  Several forks exist with more or
+ less complete conversion to Python~3, and I used one of
+ these.\footnote{\tbsurl{github.com/rockclimb/hocr2djvused}}  As the
+ name suggests, the output of \textsf{html2djvused} was used by
+ \textsf{djvused}, one of the tools of the DjVuLibre
+ library,\footnote{\tbsurl{djvu.sourceforge.net/}} to import the
+ transcription as the hidden text layer into the DjVu document
+ mentioned earlier in section \ref{sec:image-preprocessing}.
+
+ Last but not least, the basic metadata has been inserted into the
+ document, providing in particular the link to the digital library
+ containing the original version.  This is the document which is
+ used in the later stages of the workflow. 
+
+ 
+ \subsection{Indexing and annotating}
+\label{sec:indexing-annotating}
+
+The next step in the workflow intensively used the
+\textsf{djview4poliqarp}
+program\footnote{\tbsurl{github.com/jsbien/djview-poliqarp_fork}}
+(designed by myself and programmed by Michał Rudolf).  At first it was
+just a fork of \textsf{djview} intended to facilitate the use of DjVu
+corpora; %\cite{bc177},
+see, e.g.\ \cite{bc381}.
+Later, the program was extended to create and browse simple
+indexes to DjVu
+documents.\footnote{E.g.\ \tbsurl{github.com/jsbien/iLindeCSV},\newline
+  \tbsurl{github.com/jsbien/Zaborowski-index4djview}}
+
+From the technical point of view the indexes are just simple \CSV\
+files (using semicolon as the separator). 
+  Every line of an index file consists of three or four fields:
+
+\begin{enumerate}
+\item The text used for sorting and incremental search.
+\item The reference to the relevant image fragment in the form used by the
+% why "a Universal"?
+  \textsf{djview4} viewer mentioned earlier, namely a Universal
+  Resource Locator. Some fully-fledged examples can be found in
+  the indexes to Linde's dictionary, in particular in the tiny index
+  of the planet
+  symbols.\footnote{\raggedright
+    \tbsurl{github.com/jsbien/iLindeCSV/blob/master/Linde-znaki/planety.csv}}
+
+  In the indexes discussed here the scheme and authority parts are
+  absent, and the path is limited to the file names; this means in
+  practice that \prname{djview4poliqarp} has to be called with the
+  index directory as the default one. The fragment part is also
+  missing, and the query part contains the dimensions and the
+  coordinates of the image fragment in the \textsf{djview4} specific
+  form;
+  it can also contain the specification of a
+  color used for highlighting. The referenced image fragment has to be
+  rectangular, but a single url can reference several such fragments.
+\item A description: text displayed for the current entry in a small
+  window under the index.
+\item An optional comment displayed after the entry; we precede it by
+  ※ (\ucode{203B} \uname{REFERENCE MARK}) for a more distinctive
+  display. It was absent in the first versions of the program and was
+  added later, primarily to distinguish homographs.
+\end{enumerate}
+
+% private repo, so omit ... \tbsurl{github.com/jsbien/djvused4indexes} 
+The initial index is created by a quick-and-dirty modification of the
+above-mentioned \prname{djvused} program.\footnote{At present, I keep it in a
+  private repository as I
+  hope to replace it by something more elegant which I will make
+  public. Help here would be greatly appreciated.} Here is an example
+of a line created by the program for \textit{Rubricella}; it is composed from
+the following fields (below split into several lines for editorial
+reasons):
+\begin{enumerate}
+\item \sgl{ↄꝺuctus} (the entry),
+\item \verb|file:Rubricela_1511_Unglera.djvu?|\\
+  \verb|djvuopts=&page=0003|\\
+  \verb|&highlight=0237,2075,0117,0019| (the url,\\ with no color
+  specification; as we use a rudimentary form of the path, the file
+  has to be present in the current directory),
+\item \verb|Rubricela_1511_Unglera.djvu p=3 l=19|\\ \verb|tl=258 w=39 tw=530|
+  (the description: the file name, the page number, the line number on
+  the page, the line number in the document, the word
+  number on the page, the word number in the document; especially
+  useful when several indexes are merged),
+\item ※ \sgl{ↄꝺuctus} (the comment, initially equal to the entry but
+  prefixed by ※ for the reason mentioned earlier, usually somehow
+  edited later to contain the transcription, in this case,
+  \textit{conductus}).
+\end{enumerate}
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=\hsize]{imgR/Rubricella1}
+   \caption{The incorrect bounding box of an original index entry}
+   \label{fig:Trans2}
+ \end{figure}
+
+  \begin{figure}
+   \centering
+   \includegraphics[width=\hsize]{imgR/Rubricella2}
+   \caption{The manually corrected bounding box of the entry}
+   \label{fig:Trans3}
+ \end{figure}
+ 
+ The index, in addition to being browsed with the \prname{djview4poliqarp}
+ program, also has other applications, e.g.\ a simple \prname{sed}
+ script
+ creates a secondary index where the comments are entries and
+ \textit{vice versa}.\footnote{See the \prname{sed} directory at
+   \tbsurl{github.com/jsbien/Zaborowski-index4djview}.\raggedright}
+
+ Using \prname{djview4poliqarp}, I corrected by hand the borders of
+ practically all 1638 words of \textit{Rubricella};
+ see Figs.~\ref{fig:Trans2} and~\ref{fig:Trans3}. It would be nice to
+ incorporate the changes into the hidden text layer. It can be done
+ with a very simple program which is, however, yet to be written.
+ 
+% emacs-page
+{\abovecaptionskip=0pt \belowcaptionskip=\medskipamount
+ \let\tubcaptionleftglue=\relax % left-justify these captions
+\begin{figure*}[ht]
+\relsize{-2}  \centering
+\begin{verbatim}
+sed "s/.\+;file:\(.*\)[.]djvu[?]djvuopts=&page=\([0-9]\+\)&highlight=\([0-9]\+\),\([0-9]\+\),\([0-9]\+\),\([0-9]\+\);.\+\'
+/ddjvu -format=ppm -page=\2 -segment=\5x\6+\3+\4 \1.djvu imgtmp\/snippet_\1_page\2x\3y\4.ppm/"
+input.csv > output.bat
+\end{verbatim}
+  \caption{Extracting graphic  snippets (the script is split into several lines for editorial reasons)}
+  \label{sed1}
+\end{figure*}
+
+\begin{figure*}[ht]
+\relsize{-2}  \centering  \hfuzz=12pt
+\begin{verbatim}
+U;file:RubricellaUnglerTrJSB.djvu?djvuopts=&page=1&highlight=8,55,259,313;RubricellaUnglerTrJSB.djvu p=1 l=2 tl=2 w=1 tw=1; ※ "U"
+\end{verbatim}
+\leftline{\small gets converted to}
+\begin{verbatim}
+ddjvu -format=ppm -page=1 -segment=259x313+8+55 RubricellaUnglerTrJSB.djvu imgtmp/snippet_RubricellaUnglerTrJSB_page1x8y55.ppm
+\end{verbatim}
+\caption{A graphic snippet example}
+\label{sed1example}
+\end{figure*}
+
+\begin{figure*}[ht]
+\relsize{-2}  \centering
+\begin{verbatim}
+convert imgtmp/*.ppm -set filename: "%t" imgtmp/%[filename:].png
+\end{verbatim}
+  \caption{Converting a directory of \acro{PPM} files to \PNG\ format}
+  \label{convert}
+\end{figure*}
+
+\begin{figure*}[ht]
+\relsize{-2}  \centering \exhyphenpenalty=10000
+\begin{verbatim}
+sed "s/\(.\+\);file:\(.*\)[.]djvu[?]djvuopts=&page=\([0-9]\+\)&highlight=\([0-9]\+\),\([0-9]\+\),\([0-9]\+\),\([0-9]\+\);.\+\'
+/\\\\includegraphics[height=3ex]{snippets\/snippet_\2_page\3x\4y\5} % \1/"
+input.csv > output.tex
+\end{verbatim}
+\caption{Creating \LaTeX{} source snippets (the script is split into several lines for editorial reasons)}
+\label{sed2}
+\end{figure*}
+
+\begin{figure*}[ht]
+\relsize{-2} \centering \hfuzz=12pt
+\begin{verbatim}
+U;file:RubricellaUnglerTrJSB.djvu?djvuopts=&page=1&highlight=8,55,259,313;RubricellaUnglerTrJSB.djvu p=1 l=2 tl=2 w=1 tw=1; ※ "U"
+\end{verbatim}
+\leftline{\small gets converted to}
+\begin{verbatim}
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x8y55} % U
+\end{verbatim}
+\caption{\LaTeX{} source snippet example}
+\label{sed2example}
+\end{figure*}
+}
+
+ To double-check the index it is good to make a histogram of all the
+ characters occurring in the text. For this, I have usually used
+ \prname{unihistext},\footnote{\tbsurl{https://github.com/jsbien/unihistext}}
+ a fork of Bill Poser's \prname{unihist}, implemented some time ago by
+ a student of mine following my suggestions. It provided the names for
+ the Unicode and some private use characters and their combining
+ sequences. Unfortunately, it was written in Python 2 and its
+ adaptation to Python 3 does not seem trivial. Hence now I have to use
+ the original \prname{unihist}.
+
+
+ It should be noted that it is very easy to create various specialised
+ subindexes by extracting the relevant lines of the \CSV\ file with,
+ e.g.\ \prname{grep}. For this purpose some special tags can be added
+ to selected fields (with \prname{djview4poliqarp} or a favourite text
+ or spreadsheet editor). Such subindexes can be used in particular for
+ snippet extraction described below.
+ 
+\subsection{Snippets extraction}
+\label{sec:snippets-extraction}
+The main tool for snippet extraction is \prname{ddjvu}, and calls to
+\prname{ddjvu} are generated by a \prname{sed} script;
+see Figs.~\ref{sed1} and~\ref{sed1example}.  You might notice that the
+graphic snippet file name incorporates the information about its
+origin. I consider this very useful, but unfortunately due to a
+not-yet-fixed bug it is not always reliable.
+
+To allow for including the snippets in a \LaTeX{} document we convert
+them to \PNG\ format; see Fig.~\ref{convert}.
+
+Finally, another \prname{sed} script (Fig.~\ref{sed2}), creates
+appropriate \LaTeX{} code snippets to facilitate creating figures; here,
+please note
+that the entry field is preserved as the comment (Fig.~\ref{sed2example}).
+
+%\enlargethispage{-5pc}
+\section{The inventory}
+\label{sec:inventory}
+
+The inventory is presented using the \prname{expex} package mentioned
+earlier. The first line contains the graphic snippets, and the second
+the subsequent numbers for reference purposes. The third line contains
+the typemic transcription typeset with the Junicode Two font, and the last
+one contains a kind of high-level transcription for clarity, for which I
+don't have
+a name yet. I apply the following rules, roughly in the order listed.
+\begin{enumerate}
+\item Ligatures are split into the component letters, e.g. \Ju{}
+  becomes \Ju{ſ\/i} and \Ju{ĳ} becomes
+% unable to disable this ligature!!!:
+  `{\cJ{{i}}\null\cJ{{j}}}'. The letters may be
+  subject to further processing, e.g.\ \Ju{ſ\/i} becomes \Ju{si} and
+  \Ju{i\/j} becomes \Ju{ii} (there was\slash is no letter \Ju{j} in
+  Latin;\footnote{\raggedright \tbsurl{medium.com/in-medias-res/theres-no-j-in-latin-your-holiness-5a331c3f7a06}}
+  nevertheless \Ju{j} was\slash is used in the so-called Ramist
+  forms\footnote{The name comes from Pierre de la Ramée (Petrus
+    Ramus); see
+%% [cert problems with https]
+%%    \tbsurl{www.stmarys-parish.org/Latin/LatinSpelling.htm}.}).
+      \tbsurl{http://stmarys-parish.org/Latin/LatinSpelling.htm}.}).
+\item Obsolete letters (or rather obsolete letter shapes) are replaced
+  by their modern equivalents, e.g.\ \Ju{ſ} becomes \Ju{s} and \Ju{ꝺ}
+  becomes \Ju{d}.
+\item Ambiguities of \Ju{u} and \Ju{i} are resolved and replaced by
+  the Ramist forms, i.e.\ when appropriate \Ju{u} is replaced by \Ju{v}
+  and \Ju{i} by \Ju{j},\footnote{Reportedly
+    \tbsurl{alatius.com/macronizer/} should be able to do this
+    automatically.} e.g.\ \Ju{Aue} becomes \Ju{Ave}.
+\item Brevigraphs\footnote{This term is used by me in a narrow sense to
+    refer to a scribal abbreviation in the form of a single
+    character.} are resolved; in most cases their meaning is
+  obvious, but sometimes understanding the context is needed, e.g.\
+  isolated \Ju{ꝑ} becomes \Ju{per} and \Ju{ꝑmanente} becomes
+  \Ju{permanente} but \Ju{coꝛꝑe} becomes \Ju{corpore}.
+\item Other abbreviations are resolved, which sometimes may require good
+  understanding of the context, e.g.\ \Ju{an̄e} means here \Ju{antiphonae}
+  but this is far from obvious; moreover there are special rules for
+  \textit{nomina sacra}, see below.
+\item Letter case is adjusted to be compatible with modern spelling.
+\item Obvious mistakes are noted and corrected.
+\end{enumerate}
+These rules describe the transcription of single words. For multiword
+texts, additional rules are needed for marking the proper segmentation,
+but we won't use them here.
+This clarifying transcription is provided only when it differs from
+the typemic transcription.
+
+The typemic transcription uses the default character glyphs, which can
+be sometimes quite different from the original. In some fonts a better
+approximation of the shape can be achieved using OpenType features,
+e.g.\ in Junicode \Ju{ꝉ} can be rendered as \Ju{󰀏} using
+\verb|cv17| (\verb|cv| stands for character variant). 
+
+
+\subsection{Some problems of typemic transcription}
+\label{sec:some-probl-typem}
+
+
+Peter Robinson,\footnote{\tbsurl{artsandscience.usask.ca/profile/PRobinson}}
+the editor of the manuscripts of Geoffrey Chaucer, wrote
+\cite[pp.~186--187]{robinson16:_digit_revol_schol_editin}:
+\begin{quotation}
+\textrm{scribes, over and over, don’t seem to care whether the two
+  minims\footnote{\raggedright Wikipedia
+    (\tbsurl{en.wikipedia.org/wiki/Minim_(palaeography)})
+    states: \textit{A minim is the basic stroke for the letters i, m,
+      n, and u in uncial script and later scripts deriving from it};
+    the limitation to specific scripts does not seem necessary.} are
+  joined at the top (as in a modern printed n; [\ldots]%
+) or joined at the bottom (as in a
+modern printed u; [\ldots]%
+), or not joined at all.
+And then, what we call a macron takes
+a bewildering variety of forms. Sometimes it is indeed a single straight
+stroke over the letter. Sometimes it extends over several letters. Often
+it is curved. And very often it appears as a loop, beginning at the base
+of the last minim and arching back over the two minims of the u/n
+character and preceding letters. Attempting to devise transcription
+protocols in these circumstances is a complex dance with a collection
+of hydra. The intentions of the scribes appear increasingly opaque and
+distant, and we are left searching our own intentions. Exactly what
+are we trying to record; for who; and why?}
+\end{quotation}
+
+To my surprise the problem with minims occurs in
+\textit{Rubricella}, as illustrated in Fig.~\ref{fig:minim}.
+% continue paragraph below
+\lingset{glhangstyle=none}
+\defineglwlevels{nr,Unicode,tr}
+\newcommand{\bg}{\begingl[everyglUnicode={\color{red}},everygltr={\color{blue}}]}
+%\newcommand{\bg}{\begingl[everyglUnicode={\color{red}}]}
+% \let\numerwiersza\excnt
+\begin{figure}
+{\Junicode \exdisplay \bg \gla
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x532y40} % Uincenty⚠
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x665y756} % !i iu⚠fra
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x712y39} % ꝺnicā⚠
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x91y895} % pſal⚠mi
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x180y2016} % !n poﬅpou⚠atur.
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x757y709} % ! ꝓxim⚠ū
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page4x194y1079} % teu⚠ebūt.
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x289y1674} % aꝺentus
+  \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x333y1716} % !m im⚠ponatur
+  // \glnr (1) (2) (3) (4) (5) (6) (7) (8) (9) // \glUnicode {Umcentĳ}
+  {ıufra} {ꝺmcā} {pſalıııi[?]} {poﬅpouatur} {ꝓxunū} {teuebūt} aꝺnentus
+  ııiıponatur
+  //
+  \gltr {Uincentii (Vincentii)} {infra} {ꝺnicā[?]
+    (dominicam)} {psalmi} {postponatur} {ꝓximū (proximum)} tenebunt {adventus} imponatur
+// \endgl \xe }
+\abovecaptionskip=0pt \vglue-8pt
+\caption{Examples of difficulties with minims}
+\label{fig:minim}
+\end{figure}
+%
+Sometimes \Ju{n} is used instead of \Ju{u}, cf.\ example (8) and
+\textit{vice versa}, cf.\ examples (2) and (7). Sometimes \Ju{m} is
+used in place of \Ju{in} or \Ju{ni}, cf.\ examples (1) and (3), and
+sometimes \Ju{un} is used as \Ju{im}, cf.\ example (6).
+
+However, the
+most intriguing are the fragments where \Ju{m}, \Ju{n} and \Ju{u} look
+just like a sequence of dotless \textit{{i}}, cf.\ examples (4) and
+(9). I have no idea whether this is an effect of the type being worn
+down, or whether it is an intentional use of the dotless \textit{i}. In
+consequence it is not clear what the typemic representation
+of such fragments should be. For the time being I have no answer to this
+question. I also don't know whether this phenomenon occurs also in
+other prints of that time.
+
+On the other hand the various shapes of the overline abbreviation mark
+definitely appear also in this and other publications (see some
+examples below). All of them are encoded, at least at present,
+just as a macron (in Unicode \Ju{◌̄} \ucode{25CC} \uname{COMBINING
+  MACRON}).
+% , cf. e.g. \cite{bień21:_trakt_stanis_zabor}.
+
+Another problem worth mentioning concerns the variants of letter
+\textit{i}. There is no doubt that \Ju{ī} (in Unicode \ucode{012B}
+\uname{LATIN SMALL LETTER I WITH MACRON}) is an abbreviation, but the
+dotless \textit{\i},\footnote{By the way, this is the primary form of
+  the letter; the dot, called technically a tittle, appeared in the
+  Middle Ages; see, e.g.\
+  \tbsurl{quora.com/Why-do-“i”-and-“j”-posses-a-dot}.}
+the standard \textit{i} with dot and \textit{\'\i} with acute seem to be
+used with the same function, When there is no doubt about the shape,
+they are encoded respectively as \Ju{ı} \ucode{0131} \uname{LATIN
+  SMALL LETTER DOTLESS I}, \Ju{i} \ucode{0069} \uname{LATIN SMALL
+  LETTER I} and \Ju{í} \ucode{00ED} \uname{LATIN SMALL LETTER I WITH
+  ACUTE}.
+
+In some cases \Ju{c} is used instead of \Ju{e}; some examples:
+
+{\Junicode
+\exdisplay
+\bg
+\gla    
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x831y1220} % diei
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x832y1626} % E! Itē
+//
+\glnr
+(10)
+(11) 
+//
+\glUnicode
+{dici} {Itc̄} 
+//
+\gltr
+{diei} {Itē (= Item)}
+//
+\endgl
+\xe
+\vglue-8pt
+}
+
+It is not clear whether they are just mistakes or intentional
+replacements due to technical limitations.
+
+\subsection{Majuscules}
+\label{sec:majuscules}
+
+Not all majuscules listed in Fig.~\ref{fig:Ungler1_pismo01_tab112}
+occur in the text; see Fig.~\ref{fig:majuscule}.
+
+\begin{figure}
+{\Junicode
+\exdisplay
+\bg
+\gla    
+ \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x1273y89} % > Aureus
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x467y725} % >> Aue
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x646y1473} % > Barnabe
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page4x9y765} % >> Bartholomei
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x631y1987} % > Clemētis
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x703y94} % >> Ciclus
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x288y1219} % >> Cū
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x939y847} % > Deus
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x1096y1152} % >> Decē
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x495y2074} % > Euﬅachij
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x703y302} % >> Exurge
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x512y749} % > Itē
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x952y972} % > Joāne
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x1164y744} % >> Joannis
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x917y568} % >> Justū
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x398y1853} % > Katherine
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x1214y176} % >> Katheꝺꝛalis
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x964y657} % > Ladiſlai
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x649y1088} % >> Lazaro
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page4x423y360} % >> Mathei
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x408y1922} % > Marci
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x185y448} % > Nauicule.
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x227y776} % >> Nolite
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x454y900} % > O
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x407y266} % >> Omeliā
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x809y526} % >> Petri
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x1806y2} % > Pro
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x1988y38} % > Quiquagema
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x528y73} % >> Quaꝺā
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x1716y173} % > Rubicellam
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x555y1582} % >> Rubꝛice
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x525y1988} % >> Sancti
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x389y2014} % > Sctō
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x577y1023} % > Tecū
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x505y135} % >> Terciū
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x349y2149} % > Ualeriani
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x492y2013} % >> Uitali
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x1122y1730} % > Zophie
+//
+\glnr
+(12) (13) (14) (15) (16) (17) (18) (19) (20)
+(21) (22) (23) (24) (25) (26) (27) (28) (29) (30)
+(31) (32) (33) (34) (35) (36) (37) (38)  (39) (40)
+(41) (42) (43) (44) (45) (46) (47) (48) (49) 
+//
+\glUnicode
+{Aureus} {{Aue}} {Barnabe} {Bartholomei} {{Clemētis}}
+{Ciclus} {Cū} Deus Decē Euﬅachĳ Exurge Itē Ioāne Ioannis Iustū
+Katherine Katheꝺꝛalis Ladiai Laʒaro Mathei Marci Nauicule Nolite O
+Omeliā Petri Pro Quiquagema Quaꝺā Rubicellam Rubꝛice Sācti Sctō
+Tecū Terciū Ualeriani Uitali Ʒophie
+//
+\gltr
+{} {Ave} {} {} {Clementis} {} Cum {} Decem {Eustachii} {} Item
+Johanne {Joannis} Justum {} Kathedralis {Ladislai} {Lazaro} {} {} {Navicule} {} {} Omeliam {} {}
+Quiquagesima  Quadam {Rub[r]icellam} Rubrice {Sancti} Sancto Tecum Tercium Valeriani Vitali Zophie
+//
+\endgl
+\xe
+}
+\abovecaptionskip=0pt \vglue-8pt
+\caption{Majuscule (and minuscule) examples}
+\label{fig:majuscule}
+\end{figure}
+
+\subsection{Minuscules}
+\label{sec:minuscules}
+Fig.~\ref{fig:Ungler1_pismo01_tab112} lists minuscules, their
+ligatures and brevigraphs in one sequence; we prefer to describe them
+separately. For most of the minuscules the Unicode encoding is
+obvious.
+
+
+The following minuscules occur in the examples in Fig.~\ref{fig:majuscule} (the
+number of a representative example is given in parentheses):
+\def\comma{}
+\halign{&#\quad\hfil\cr
+ \Junq{a} (14)\comma % 1
+&\Junq{ā}  (24)\comma % Joāne
+&\Junq{b} (14)\comma % 2
+&\Junq{c} (20)\comma % 5
+&\Junq{ꝺ} (29)\comma % Katheꝺꝛalis
+&\Junq{e} (20)\comma % 1
+\cr
+ \Junq{ē} (20)\comma % 4
+&\Junq{ē} (20)\comma % 4
+&\Junq{f} (2)\comma % ıufra
+&\Junq{g} (39)\comma % 3
+&\Junq{ı} (2)\comma % ıufra
+&\Junq{i} (25)\comma % 3
+\cr
+ \Junq{l} (28)\comma % 3
+&\Junq{m} (39)\comma % 3
+&\Junq{n} (24)\comma % 2
+&\Junq{o} (24)\comma % 3
+&\Junq{ō} (44)\comma % Sctō
+&\Junq{p} (49)\comma % Ʒophie
+\cr
+ \Junq{q} (39)\comma % Quiquage...
+&\Junq{r} (27)\comma % 1
+&\Junq{ꝛ} (28)\comma % Katheꝺꝛalis
+&\Junq{s} (25)\comma % 1
+&\Junq{ſ} (4)\comma % pſal⚠mi
+&\Junq{t} (31)\comma % 3
+\cr
+ \Junq{u} (26)\comma % 1
+&\Junq{ū} (26)\comma % Cū
+&\Junq{x} (22)\comma % Exurge
+&\Junq{ʒ}  (30) % Laʒaro
+\cr
+}
+
+The remaining minuscules, namely
+\Ju{c̄} (50), % !! ⁊c̄.
+\Ju{ī} (62), % vltīa⚠
+\Ju{ꝉ} (53), % apꝉoꝝ
+\Ju{n̈} (56), % ꝺn̈⚠icā
+\Ju{r̄}  (59), % or̄oem
+ are illustrated in Fig.~\ref{fig:more-miniscule}.
+
+ 
+\lingset{glhangstyle=none}
+\begin{figure}
+{\Junicode
+\exdisplay
+\bg
+\gla    
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x1281y840} % !! ⁊c̄.
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x725y706} % !!!! eph̵ia
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x1012y183} % ! eccꝉie
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x1229y473} % !!! apꝉoꝝ
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x245y671} % capꝉƷ⚠.
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x1146y1825} % ! ꝺm̄ice
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page4x356y767} % !!! ꝺn̈⚠icā
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x628y452} % ! p̄ꝺicta
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x1146y1017} % ! xp̄i
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x768y666} % ! or̄oem
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x953y1221} % ??! ps̈⚠.
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x757y709} % ꝓxim⚠ū
+ \includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page0002x0181y0351new} % vltīa⚠
+//
+\glnr 
+(50)  (51) (52) (53) (54) (55) (56) (57) (58) (59)
+(60) (61) (62) (63) (64) (65) (66) (67) (68) (69)
+//
+\glUnicode {⁊c̄}  {eph̵ia}  {{eccꝉie}} {apꝉoꝝ} {capꝉƷ}
+ꝺm̄ice(?)  ꝺn̈ıcā p̄ꝺicta xp̄i or̄oem {psᷓ (?)} ꝓximū  vltīa
+// \gltr {et
+  ceatera} {Epiphania} {ecclesiae} {apostolorum} capitulum
+{dominice} dominicam praedicta Christi orationem {psalmos (?)} proximum
+ultima
+//
+\endgl \xe }
+\abovecaptionskip=0pt \vglue-8pt
+\caption{More miniscule examples}
+\label{fig:more-miniscule}
+\end{figure}
+
+Some minuscules are supplemented by an abbreviation mark, usually a more
+or less horizontal line over the letter, conventionally encoded as a
+macron. Sometimes the mark resembles a tilde (example (57)), % ꝺn̈ıcā
+or a
+flattened circumflex (example (50)). % ⁊c̄
+Sometimes the abbreviation is
+marked by a diaeresis (example (46)). % 
+Sometimes the bar is so short that it looks like a dot (example
+(58)). %
+The most intriguing is the abbreviation mark in example (60). Is this
+just a diaeresis? Or a little known character \uname{COMBINING LATIN
+  SMALL LETTER FLATTENED OPEN A ABOVE} proposed by the Medieval Unicode
+Font
+Initiative?\footnote{\tbsurl{mufi.info/q.php?p=mufi/chars/unichar/7635}}
+Or something else?  I don't know the definite answer, though Susana
+Tavares Pedro supported my hypothesis in the Facebook Paleography
+Society
+group.\footnote{\raggedright \tbsurl{facebook.com/groups/7687162686/permalink/10159164467367687}}
+On the other hand, in Fig.~\ref{fig:Ungler1_pismo01_tab112} the
+diacritical mark over \textit{s} looks rather like a macron.
+
+It is interesting to compare the letter \textit{l} in examples (4)
+and e.g.\ (15). Is this the same type/sort from the same font? I'm not
+sure.
+
+A reader may be curious what the letter \Ju{Ʒ}, usually just
+the equivalent of \Ju{z}, is doing in the abbreviation of
+\Ju{capitulum} (example (54)). This is an example of a homographic
+character; it
+should be interpreted, at some level of transcription, as Unicode
+\ucode{A76B} \uname{LATIN SMALL LETTER ET} (in Junicode: \Ju{ꝫ}).  The
+scribes used to write \Ju{m} vertically to save the space, the letter
+written this way looked as \Ju{ꝫ}, so one of its meanings is just
+\Ju{m}.
+
+A reader may be also curious what \Ju{x} and \Ju{p} are doing in an
+abbreviation of \Ju{Christi} (example (58)). The answer is that \Ju{x}
+stands for the
+Greek \textit{chi}, and \Ju{p} for the Greek \textit{rho}.  This is just
+an example of the special abbreviation rules for \textit{nomina
+  sancta}.
+
+\subsection{Ligatures}
+\label{sec:ligatures}
+
+Besides the ligatures classified here as brevigraphs and discussed
+below, Fig.~\ref{fig:Ungler1_pismo01_tab112} lists only \Ju{ﬀ}
+(\ucode{FB00} \uname{LATIN SMALL LIGATURE FF}). However, in the text
+we can see also \Ju{ﬅ} (\ucode{FB05} \uname{LATIN SMALL LIGATURE LONG
+  S T}, example (5)), \Ju{} (\mcode{EBA3}\footnote{Using the \acro{M}
+  prefix for the characters from the recommendation of Medieval
+  Unicode Font Initiative was proposed by me in \cite{bc480}; I've
+  spotted this convention used independently elsewhere, unfortunately
+  I don't remember where.} \uname{LATIN SMALL LIGATURE LONG S L [MUFI
+  4.0]}, example (29)), and \Ju{} (\mcode{EBA2} \uname{LATIN SMALL
+  LIGATURE LONG S I [MUFI 4.0]}, example (39)).
+
+The ligature \Ju{ĳ} (\ucode{0133} \uname{LATIN SMALL LIGATURE IJ},
+example (10)), is just a variant of \Ju{ii}, as already
+mentioned.
+
+\subsection{Brevigraphs}
+\label{sec:brevigraphs}
+
+
+
+Some popular brevigraphs have already occurred in the examples above, namely
+\Ju{⁊} (\ucode{204A} \uname{TIRONIAN SIGN ET}, in
+the Junicode
+font also \Ju{󰀝}; see example (50)), \Ju{ꝉ} (\ucode{A749}
+\uname{LATIN SMALL LETTER L WITH HIGH STROKE}, in Junicode also
+\Ju{󰀏}), which occurs with different meanings in examples (52),
+(53) and (54), and \Ju{ꝝ} (\ucode{A75D} \uname{LATIN SMALL
+  LETTER RUM ROTUNDA}) (example (53)).
+
+
+I prefer to classify the character encoded here as \Ju{h̵}\footnote{Its
+  shape can be also approximated by \Ju{} (\mcode{E8A3} \uname{LATIN ABBREVIATION SIGN AUTEM [MUFI 4.0]}).}
+(\ucode{0068} \uname{LATIN SMALL LETTER H} followed by \ucode{0335}
+\uname{COMBINING SHORT STROKE OVERLAY}), in Junicode also
+\Ju{\addfontfeatures{CharacterVariant=16:0}h̵}\footnote{\tbsurl{github.com/psb1558/Junicode-font/discussions/134}},
+see also example (51), as a brevigraph, but the diacritic can be used also
+with other letters; see an example below.\footnote{In the Facebook
+  Paleography Society group, Lisa Howarth wrote
+  (\tbsurl{facebook.com/groups/7687162686/permalink/10158299890607687})
+  \textit{When attached to an `h', it usually means `er' or `ab'
+    depending on the word. It can also stand as a more general
+    abbreviation in longer words [\ldots]}.\raggedright} However, because the
+diacritic touches the base letter, I prefer to treat them as a whole.
+
+Essentially the same diacritic is used also with the letter \Ju{b}
+which is in turn ligated with the long \textit{s}; see example
+(63). David Baker suggested encoding it as the sequence of \Ju{ſ},
+\Ju{b} and \Ju{◌̵} (\ucode{0335} \uname{COMBINING SHORT STROKE
+  OVERLAY}),\footnote{\tbsurl{https://github.com/psb1558/Junicode-font/discussions/233}}
+which in the Junicode font is rendered as the ligature \Ju{ſb̵}. I
+ prefer to treat the ligature as a single brevigraph.
+
+ Fig.~\ref{fig:Ungler1_pismo01_tab112} lists two brevigraphs
+ based on the letter \textit{p}, namely \Ju{ꝑ} (\ucode{A751}
+ \uname{LATIN LETTER P WITH STROKE THROUGH DESCENDER}) and \Ju{ꝓ}
+ (\ucode{A753} \uname{LATIN SMALL LETTER P WITH FLOURISH}). The first
+ character is illustrated below in example (64), the second can be seen
+ in examples (6) and (61).
+
+ The figure lists three brevigraphs based on the letter
+ \textit{q}. The first two are well known: \Ju{ꝙ} (\ucode{A759}
+ \uname{LATIN SMALL LETTER Q WITH DIAGONAL STROKE}), see example
+ (65),\footnote{The brevigraph is often used as a separate word.} and
+ \Ju{} (\mcode{E8BF} \uname{LATIN SMALL LETTER Q LIGATED WITH FINAL
+   ET [MUFI 4.0]}), see example (66). The third is \uname{LATIN
+   SMALL LETTER Q LIGATED WITH FINAL ET [MUFI 4.0]} with a diacritic
+ mark, which can be interpreted as the \Ju{◌ᷓ } \ucode {1DD3}
+ \uname{COMBINING LATIN SMALL LETTER FLATTENED OPEN A ABOVE} mentioned
+ earlier, giving the interpretation \Ju{ꝙᷓ}. Another interpretation,
+ used here, is just \Ju{◌̈} (\ucode{0308} \uname{COMBINING
+   DIAERESIS}). The brevigraph can be used as a separate word.
+
+ The figure lists two brevigraphs based on the long \textit{s}. The
+ first one is \Ju{} (\mcode{E8B7} \uname{LATIN SMALL LETTER LONG S
+   WITH FLOURISH [MUFI 4.0]}, seen in example (68)); it can also be
+ used as a separate word (its interpretations were suggested in the
+ Facebook Paleography Society group by Gionata Brusa and Carolus
+ Hrachowiczensis\footnote{\raggedright
+ \tbsurl{https://facebook.com/groups/7687162686/posts/10159250228377687}}). The
+ second one, the ligature with the letter \textit{h} and a diacritic
+ mark, was discussed above.
+
+   \lingset{glhangstyle=none}
+{\Junicode
+\exdisplay
+\bg
+\gla    
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page1x1559y130} % ! ſƀ͡ſcripto
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x769y166} % ! ꝑmanente
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page3x254y1295} % ! ꝙ
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x397y1621} % E! vſ
+\includegraphics[height=3ex]{snippets/quam} % E! ̈⚠
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x636y863} % ꝫ⚠
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page5x155y1095} % ! ↄcluſa
+\includegraphics[height=3ex]{snippets/snippet_RubricellaUnglerTrJSB_page2x608y890} % ! lcōibꝰ
+//
+\glnr
+(63) (64) (65) (66) (67) (68) (69) (70)
+(71) (72) (73) (74) (75) (76) (77) (78) (79) (80)
+//
+\glUnicode
+{{ſ͡ƀſcripto}} ꝑmanente {ꝙ} {vſ} {{̈}} 
+ↄcluſa  lcōibꝰ
+//
+\gltr
+{subscripto} permanente {quod} usque {quam} {scilitet? sed?} conclusa lectionibus
+//
+\endgl
+\xe
+}
+
+Further, example (69) illustrates the brevigraph \Ju{ↄ} (\ucode{2184}
+\uname{LATIN SMALL LETTER REVERSED C}) and example (70) shows the
+brevigraph \Ju{ꝰ} (\ucode{A770} \uname{MODIFIER LETTER US}).
+
+Fig.~\ref{fig:Ungler1_pismo01_tab112} also lists brevigraphs
+in the form of an insular \textit{d} with a diacritical
+mark\footnote{\tbsurl{https://github.com/psb1558/Junicode-font/discussions/133}}
+and a \textit{v} with a diacritical mark, but they don't occur in the
+text of \textit{Rubricella}.
+
+\subsection{Other characters}
+\label{sec:other-characters}
+
+Other characters listed in the figure fall into two categories:
+digits, and (in a rather large sense) punctuation marks.
+Besides the full stop and the semicolon, we have here a hyphen, namely
+\Ju{⸗} (\ucode{2E17} \uname{DOUBLE OBLIQUE HYPHEN}), an asterisk (not
+  present in \textit{Rubricella}) and a so-called
+  rubric\footnote{\tbsurl{https://en.wikipedia.org/wiki/Rubric}} which
+  can be interpreted as \Ju{⁌} (\ucode{204C} \uname{BLACK LEFTWARDS
+    BULLET}).\footnote{\tbsurl{https://github.com/psb1558/Junicode-font/discussions/93}}
+
+\section{Final remarks}
+\label{sec:final-remarks}
+
+The workflow presented here can be considered an exemplification of
+the rule \textit{The best tool is the tool you know best} (author
+unknown to me). It is acceptable for hobbyists, but for serious
+research, subject to the principle \textit{publish or perish}, it
+seems too cumbersome and time-consuming. A possible way to streamline
+the workflow would be to extend \prname{djview4poliqarp} with some
+appropriate import and export facilities, but it is practically
+impossible because the program is orphaned.
+
+Another extreme is illustrated by, for example, a
+complicated workflow presented in a recent paper
+\cite{kordon03:_class}.
+
+Some time ago, I wrote \textit{a printed or typed text is quite
+  different from any other kind of utterance, because it is in fact a
+  string of characters from a finite, well defined alphabet.}
+\cite[p.~143]{bc427}. As you can see, I was too optimistic, the ``alphabet'' of
+old prints is far from being well defined.  There are still some open
+questions concerning the form (and the content) of Ungler's
+\textit{Rubricella} and
+Ungler's font number 1 which deserve further investigation.
+
+Last but not least the reader should be warned that I don't know Latin
+and my knowledge of paleo(typo)graphy is rather rudimentary. I tried
+to cross-check the statements made in the paper, but I could certainly
+have made errors. I will appreciate all comments and corrections.
+
+\textit{Almost all the resources discussed here will be available, after
+additional verification, in a public repository at
+\textsl{\tbsurl{https://github.com/jsbien/Rubricella}}; the repository is
+private at the time being, but individual access can be granted on
+request.}
+
+
+\small
+\def\url{\tburl}
+\SetBibJustification{\raggedright \advance\itemsep by 1pt plus1pt minus1pt }
+\bibliographystyle{tugboat}
+%\nocite{book-minimal}      % make the bibliography non-empty
+\bibliography{rubricella}       % xampl.bib comes with BibTeX
+
+\makesignature
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% ispell-local-dictionary: "english"
+%%% TeX-master: t
+%%% coding: utf-8-unix
+%%% TeX-PDF-mode: t
+%%% TeX-engine: xetex
+%%% End:
