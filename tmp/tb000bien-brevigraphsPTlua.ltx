@@ -366,7 +366,7 @@ detail\footnote{When the present paper was almost finished, some
 \end{figure}
 
 
-The second tools was a sophisticated client-server system. The idea
+The second tool was a sophisticated client-server system. The idea
 was that a data base will store shapes from different documents
 provided by different persons or institutions and accessed remotely by
 interested users. The shapes were exported to a MySQL
@@ -435,9 +435,9 @@ The brevigraph names serve purely a technical goal, they allow to
 group the similar brevigraphs together in the \textsf{djview4poliqarp}
 program. However the choice of the names is not obvious. The official
 Unicode names and the Unicode-like MUFI names are cumbersome because
-of their length, e.g. \uname{LATIN SMALL LETTER Q LIGATED WITH FINAL
-  ET}. In consequence I was considering using names derived from the
-XML entity names provided by MUFI also for selected pure Unicode
+of their length, e.g. \uname{LATIN CAPITAL LETTER V WITH DIAGONAL
+  STROKE}. In consequence I was considering using names derived from
+the XML entity names provided by MUFI also for selected pure Unicode
 characters. Some are short and mnemotechnical, e.g. \verb|&pbardes;|
 (\ucode{A751} latin small letter P with stroke, here BAR, through
 DEScender). Some are short and not mnemotechnical, e.g. \verb|&q3app;|
@@ -454,6 +454,11 @@ kind of macro facility, cf. Fig. \ref{fig:abbr}. The configuration
 file\tburlfootnote{~/.config/djview-poliqarp/djview-poliqarp.conf} has
 the \texttt{[edit]} section which can contain appropriate settings.
 
+For characters which are present neither in Unicode nor in MUFI I use
+some \textit{ad hoc} names; the character which are difficult to
+identify I handle in an analogical way. Such names often don't
+identify the glyphs uniqually, they just point to similar glyphs.
+
 For technical reasons the names are placed first in the comment field
 and then moved to the entry field with a program.  The final indexes
 have the names in the form of \texttt{*\_br.csv}. An aggregated index
@@ -467,18 +472,12 @@ is also created which is named simply \texttt{brevigraphs.cvs}.
 \end{figure}
 
 
-For characters which are present neither in Unicode nor in MUFI I use
-sometimes the names modified by an exclamation mark or other
-non-alphabetic characters; the character which are difficult to
-identify I handle in an analogical way. Such names don't identify the
-glyphs uniqually, they just point to similar glyphs.
-
 
 The figures in the present paper were prepared in a way similar to
 that used for \cite{Rubricella2023}: a program converts the index of
 the selected glyphs into the
 \textsf{expex}\tburlfootnote{https://www.ctan.org/pkg/expex} code and
-a set of graphic snippets.
+creates a set of graphic snippets from the DjVu documents.
 % At first the exhaustive figures were
 % prepared which presented the brevigraph images from all the ???  fonts
 % under consideration. The ???-page paper containing them is available
@@ -516,7 +515,7 @@ the glyph, namely \Ju{󰀝} (accessed with OpenType character variant
 feature or just with the code \ucode{F001D}), which is quite close to
 the shape of most glyphs on Fig. \ref{fig:et}. Item 31 on the figure
 is yet another variant, called in the font manual \textit{Tironian et
-  sign later form with bar}, is available in Junicode only with
+  sign later form with bar}; it is available in Junicode only with
 OpenType feature \textit{ss10} and the tags
 {\Ju{\&\_\_a;}}{\Ju{\&\_\_1;}}:
 \Ju{\addfontfeature{StylisticSet=10}⁊\&\_\_a;\&\_\_2;}.
@@ -568,9 +567,9 @@ the instances of the well known brevigraph present in Unicode as
 \Ju{ꝰ}; it was introduced in version 5.1.0 (published in 2008),
 \textit{modifier} means it is not on the baseline. It is used always
 at the end of words. The meaning of the glyphs similar to a circle,
-like U2-09, is to be checked in the texts, as it can be just a raised
-small letter \textit{o}, in Unicode \ucode{1D52} \uname{MODIFIER
-  LETTER SMALL O}.
+like item 43, is to be checked in the texts, as it can be just a
+raised small letter \textit{o}, in Unicode \ucode{1D52}
+\uname{MODIFIER LETTER SMALL O}.
 
 
 \def\CAPTIONus{The letter \textit{us}}
@@ -593,7 +592,7 @@ the same as the one described in \cite{Blake} as \textit{jagged
   horizontal line} which is encoded in Unicode as \ucode {1DD3}
 \uname{COMBINING LATIN SMALL LETTER FLATTENED OPEN A ABOVE} but
 rendered differently: in Junicode is it \Ju{◌ᷓ} and in Symbola it is
-\Ssgl{◌ᷓ}. Moreover there is an open question what kind of diacritics,
+\cSgl{◌ᷓ}. Moreover there is an open question what kind of diacritics,
 if any, is used in Ungler's font 10 (items 32 and 33).
 
 
@@ -606,10 +605,10 @@ if any, is used in Ungler's font 10 (items 32 and 33).
 
 
 Old texts used many variations of the letter \textit{b}, many of them
-are assigned code points by MUFI.
-Many variants of the letter \textit{b} are also listed in
-\textit{Polonia Typographica}, Fig.~\ref{fig:b} presents those most
-relevant to our purpose.
+are assigned code points by MUFI.  Many variants of the letter
+\textit{b} are also listed in \textit{Polonia Typographica},
+Fig.~\ref{fig:b} presents those of them which are directly relevant to
+our purpose.
 
 \def\CAPTIONb{The variants of the letter \textit{b}}
 \input b
@@ -713,7 +712,6 @@ texts.
 \section{Modification of the letter \textit{g}}
 \label{sec:modif-lett-g}
 
-% No idea how to center this figure :-( May ask the author of expex.
 \def\CAPTIONg{The variants of the letter \textit{g}}
 \input g
 
@@ -721,7 +719,7 @@ I have very little to say about the glyphs on Fig.~\ref{fig:g}, as I
 haven't found any occurence of them in a text. On one hand it resemble
 the letters \textit{rum}, cf. sec. \ref{sec:modif-lett-r}, and
 \textit{tum}, cf. sec. \ref{sec:modif-lett-t}. On the other hand it
-reseamble also the glyph from the Fig.~\ref{fig:cis}. Moreover Blake
+resemble also the glyph from the Fig.~\ref{fig:cis}. Moreover Blake
 \cite{Blake} says that \textit{weird vertical line at end of word}
 means a \textit{s} preceded by a vowel (typically \textit{es} in
 English and \textit{is} in Latin); in other words in Latin it can be
@@ -734,10 +732,9 @@ perhaps considered as the ligature of \textit{g} and the letter
 \def\CAPTIONh{The variants of the letter \textit{h}}
 \input h
 
-The similarity of item 3 and the item 7 on Fig.~\ref{fig:h} to
-respectively the item 3 and t from Fig.~\ref{fig:b} and the item 6 and
-e.g. 19 from Fig. ~\ref{fig:d}, all from the same font, seems to be a
-design decision.
+For some fonts there is an evident similarity of item on
+Fig.~\ref{fig:h}, Fig.~\ref{fig:b} and Fig. ~\ref{fig:d}. It seems to
+be a design decision.
 
 The character with the almost identical shape appeared already in
 Gutenberg's 42-line Bible. In MUFI recommendation it is identified as
@@ -779,10 +776,8 @@ and therefore a separate code point has not been
 assigned\tburlfootnote{https://github.com/psb1558/Junicode-font/issues/4}. However
 the Junicode font contains at the code point \ucode{F000F} the glyph
 \textit{l with high stroke ending with flourish} (\Ju{󰀏}) accessible
-also as \textit{l} with the tags rendered here as
-{\Ju{\&\_\_s;}}{\Ju{\&\_\_f;}} (actually they are \ucode{E0073}
-\ucode{E0066}, OpenType feature \textsf{ss10} is required to be
-selected).
+also as \textit{l} with the OpenType feature \textsf{ss10} and the
+tags {\Ju{\&\_\_s;}}{\Ju{\&\_\_f;}}.
 
 \begin{figure}[ht]
   \centering
@@ -904,12 +899,12 @@ some additional research. We will only note that according to
 The first glyph on Fig.~\ref{fig:rrum} is an interesting and rather
 little known character. Although this is far from obvious, it is
 \ucode{A775} \uname{LATIN SMALL LETTER RUM} despite the fact that the
-representative glyph is \Ssgl{`ꝵ'}, as in Junicode we have \Ju{ꝵ} ---
-the glyph practically identical to that on the figure. The charactert
-was introduced to Unicode in version 5.1 (published in 2008), together
-with some other similar character, cf. sec.~\ref{sec:modif-lett-t}. I
-assume the second glyph on the figure is just a variant of the first
-one.
+Unicode representative glyph is \cSgl{`ꝵ'}, as in Junicode we have
+\Ju{ꝵ} --- the glyph practically identical to that on the figure. The
+charactert was introduced to Unicode in version 5.1 (published in
+2008), together with some other similar character,
+cf. sec.~\ref{sec:modif-lett-t}. I assume the second glyph on the
+figure is just a variant of the first one.
 
 \def\CAPTIONresp{The alternative glyphs of the letter \textit{response}}
 \input resp
@@ -1016,7 +1011,7 @@ occurences of the discussed brevigraphs in the texts and in this way
 to find or verify their meaning. We don't need for this the full
 transcriptions of the texts.  What is sufficient for our purposes is
 \textit{glyph} or \textit{character} \textit{spotting}. These tasks
-are discussed in some publications, but there seem to be no tool
+are discussed in some publications, but there seems to be no tool
 available directly for use. With some limitation a variant of a
 workflow described earlier can be used for this purpose. The
 \textsf{djvudict} can be converted to a PDF document (created of
