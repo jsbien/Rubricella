@@ -1,0 +1,169 @@
+From 51e34da1e090eba96f29ffd2272646df61c4519b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Janusz=20S=2E=20Bie=C5=84?= <jsbien@mimuw.edu.pl>
+Date: Fri, 23 Feb 2024 09:49:40 +0100
+Subject: [PATCH] TB 1. proof
+
+---
+ tmp/tb139bien-brevigraphspt.ltx | 59 ++++++++++++++++++++-------------
+ 1 file changed, 36 insertions(+), 23 deletions(-)
+
+diff --git a/tmp/tb139bien-brevigraphspt.ltx b/tmp/tb139bien-brevigraphspt.ltx
+index 9720b22..2a89a39 100644
+--- a/tmp/tb139bien-brevigraphspt.ltx
++++ b/tmp/tb139bien-brevigraphspt.ltx
+@@ -267,7 +267,8 @@ diacritic mark which happens to touch the letter?
+ \end{figure}
+ 
+ 
+-One initial question for every basic brevigraph is whether it has been
++% One initial question for every basic brevigraph is whether it has been
++An important question for every basic brevigraph is whether it has been
+ assigned a codepoint in the Unicode
+ standard.\tburlfootnote{https://home.unicode.org/}  Checking the
+ character charts is unfortunately not sufficient for two
+@@ -441,7 +442,8 @@ program. However, the choice of the names is not obvious. The official
+ Unicode names and the Unicode-like \MUFI\ names are cumbersome because
+ of their length, e.g., \uname{LATIN CAPITAL LETTER V WITH DIAGONAL
+   STROKE}. As an alternative, I was considering using names derived from
+-the \XML\ entity names also provided by \MUFI, for selected pure Unicode
++% the \XML\ entity names also provided by \MUFI, for selected pure Unicode
++the \XML\ entity names provided by \MUFI, also for selected pure Unicode
+ characters. Some are short and mnemotechnical, e.g. \verb|&pbardes;|
+ (\ucode{A751} latin small letter P with stroke, here \uname{BAR}, through
+ \uname{DES}cender). Some are short and not mnemotechnical, e.g., \verb|&q3app;|
+@@ -456,7 +458,8 @@ Nevertheless, after some hesitation, I decided to use those names (with
+ and `\texttt{;}' stripped) for my purposes. The crucial factor in
+ making this decision was the fact that \textsf{djview4poliqarp} has a
+ kind of macro facility (Fig.~\ref{fig:abbr}). The configuration
+-file\tburlfootnote{~/.config/djview-poliqarp/djview-poliqarp.conf} has
++%%% not URL:
++file\footnote{\texttt{\char126/.config/djview-poliqarp/djview-poliqarp.conf}} has
+ an \texttt{[edit]} section which can contain appropriate settings.
+ 
+ For characters which are present neither in Unicode nor in \MUFI\ I use
+@@ -483,11 +486,6 @@ that used for \cite{Rubricella2023}: a program converts the index of
+ the selected glyphs into the
+ \textsf{expex}\tburlfootnote{https://ctan.org/pkg/expex} code and
+ creates a set of graphic snippets from the DjVu documents.
+-% At first the exhaustive figures were
+-% prepared which presented the brevigraph images from all the ???  fonts
+-% under consideration. The ???-page paper containing them is available
+-% in the repository. For the present paper some figures has been
+-% simplified to save the space.
+ 
+ The glyphs in the figures are numbered for reference purposes and
+ accompanied by the self-explanatory abbreviations of printing house
+@@ -643,7 +641,9 @@ alternative \textit{latin small letter b ligated with arm of latin
+ 
+ 
+ According to Gerald Bettridge \cite{Bettridge}, it means \textit{bis}
+-and, after the long \textit{s}, \textit{ub} (see Fig.~\ref{fig:Gabbr}, left,
++% why left?
++%and, after the long \textit{s}, \textit{ub} (see Fig.~\ref{fig:Gabbr}, left,
++and, after the long \textit{s}, \textit{ub} (see Fig.~\ref{fig:Gabbr},
+ also \cite[p.~12]{andre15:B42} and
+ \cite[p.~12]{andre22:_inven_unicod_mufi}). It can be ligated with long
+ \textit{s}; see sec.~\ref{sec:modif-lett-long-1}.
+@@ -663,17 +663,21 @@ The similarity of items 6 and (e.g.)\ 19 to item 3 from
+ Fig.~\ref{fig:b} and items 5 and (e.g.)\ 8 from Fig.~\ref{fig:h},
+ all from respectively the same fonts, seems to be a design decision.
+ 
+-According to Gerald Bettridge \cite{Bettridge} the character also
+-appears in Gutenberg's bible with several meanings.\footnote{It is not
+-  confirmed by \cite{andre15:B42}; perhaps the author was analysing a
+-  different edition.} On the other hand the brevigraph is called
+-\textit{d with two ascenders} by Erin Blake in \cite{Blake}; she states
+-that the brevigraph stands for
++I think this is the brevigraph called \textit{d with two ascenders}
++by Erin Blake in \cite{Blake}; he states that the brevigraph stands
++for
+ \begin{quote}
+   \textit{de} and (depending on the language) also for \textit{der},
+   \textit{dis}, \textit{dum} and other \textit{d}-syllables
+ \end{quote}
+ 
++It is an open question whether it should be identified with a
++character with a similar look appearing in Gutenberg's bible.  The
++character is actually the letter \textit{d} with a diacritical
++mark.\footnote{In \cite{andre15:B42} it is identified with
++  \ucode{1E0B} \uname{LATIN SMALL LETTER D WITH DOT ABOVE} (\Ju{ḋ})}
++According to Gerald Bettridge \cite{Bettridge} the character appears
++there with several meanings.
+ 
+ Peter
+ Baker suggested\tburlfootnote{{https://github.com/psb1558/Junicode-font/discussions/133}}
+@@ -706,7 +710,9 @@ wrote\tburlfootnote{{https://junicode.sourceforge.net/ecaudata.html}}
+ \end{quote}
+ and provided an OpenType feature (\textsl{ss15}) to distinguish them
+ in the Junicode
+-font.\tburlfootnote{{https://github.com/psb1558/Junicode-font/issues/13}}
++font. 
++% not needed:
++% \tburlfootnote{{https://github.com/psb1558/Junicode-font/issues/13}}
+ I have no opinion on this matter.
+ 
+ The meaning of the letter with a bar above (item 19) is yet to be checked in the
+@@ -727,7 +733,8 @@ resemble also the glyph from Fig.~\ref{fig:cis}. Moreover Blake
+ means an \textit{s} preceded by a vowel (typically \textit{es} in
+ English and \textit{is} in Latin); in other words in Latin it can be
+ perhaps considered as the ligature of \textit{g} and the letter
+-`\textit{is}' has been discussed already in sec.~\ref{sec:non-alph-brev}.
++%`\textit{is}' has been discussed already in sec.~\ref{sec:non-alph-brev}.
++`\textit{is}' which has been discussed already in sec.~\ref{sec:non-alph-brev}.
+ 
+ \section{Modifications of the letter \textit{h}}
+ \label{sec:modif-lett-h}
+@@ -763,7 +770,9 @@ group:\tbsurlfootnote{facebook.com/groups/7687162686/permalink/10158299890607687
+ \end{quote}
+ She considers the glyph to be composed from the letter \textit{h} and
+ an diacritical sign, similar to Peter
+-Baker, who identifies\tburlfootnote{{https://github.com/psb1558/Junicode-font/discussions/133}}
++Baker, who identifies
++% URL corrected
++\tburlfootnote{{https://github.com/psb1558/Junicode-font/discussions/134}}
+ the diacritics as \ucode{0335} \uname{COMBINING SHORT
+   STROKE OVERLAY} (\Ju{◌̵}). 
+ 
+@@ -854,7 +863,8 @@ ambiguous; the reported meanings are \textit{quam}, \textit{que},
+ \input qslstrok
+ 
+ Fig.~\ref{fig:qbardes} demonstrates also various kinds of
+-diacritical marks which can be used with this brevigraph. The meanings
++% a typo
++diacritical marks which can be used with this brevigraph. The meaning
+ of modified brevigraphs is not clear and requires further
+ research.
+ 
+@@ -869,7 +879,7 @@ name \uname{latin small letter q with swash} is proposed.  The
+ brevigraph has three meanings: \textit{quod}, \textit{qui} and
+ \textit{que}; it can be used as an individual word or as a part of it.
+ 
+-The meanings of modified brevigraphs with diacritical marks is not
++The meaning of modified brevigraphs with diacritical marks is not
+ clear. Here we will mention only that in
+ \cite[p.~71]{andre22:_inven_unicod_mufi} a glyph similar to those from
+ Fig.~\ref{fig:qslstrok} is classified as \uname{LATIN SMALL LETTER
+@@ -916,7 +926,9 @@ figure is just a variant of the first one.
+ 
+ 
+ The glyphs in Fig.~\ref{fig:resp} are ambiguous.  They can represent
+-\ucode{A776} \uname{LATIN LETTER SMALL CAPITAL RUM} (\Ssgl{ꝶ}), but
++\ucode{A776} \uname{LATIN LETTER SMALL CAPITAL RUM}
++% color
++(\cSgl{ꝶ}), but
+ they can also be interpreted as \ucode{211E} \uname{PRESCRIPTION TAKE}
+ (\Ju{℞}) and, last but not least, \ucode{211F} \uname{RESPONSE}
+ (\Ju{℞}) which in prayer books can be paired with the \textit{versicle}
+@@ -1045,9 +1057,10 @@ context of a shape in the document, as illustrated in Figures
+ \end{figure}
+ 
+ At present my programs supporting this approach are too primitive to
+-be used conveniently, but I will try to improve them.  Any help frmo
++be used conveniently, but I will try to improve them.  Any help from
+ Python and/or \acro{QT} programmers (\acro{QT} was used to implement
+-\textsf{djview4poliqarp} and \textsf{}\textup{djview4shapes}) would be
++% font
++\textsf{djview4poliqarp} and \textsf{djview4shapes}) would be
+ welcomed and appreciated.
+ 
+ \small
