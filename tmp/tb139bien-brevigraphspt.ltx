@@ -8,6 +8,7 @@
 %\documentclass{ltugboat}
 \usepackage{snapshot}
 \ifx\tubdots\undefined \else \let\dots\tubdots \let\ldots\tubdots \fi
+\ifx\getfirstpage\undefined \let\getfirstpage\gobble \fi
 \setcounter{topnumber}{20} % allow lots of figures at top of page
 \setcounter{dbltopnumber}{20}
 \setcounter{totalnumber}{20}
@@ -293,7 +294,7 @@ assignments at first, up to version 4.0, were published as
 recommendations in the form of \PDF\ documents
 \cite{haugen15:_mufi1}. They list over 1500 pure Unicode and Private
 Use Area characters in the Latin alphabet of potential use for the
-encoding old text sources.
+encoding of old text sources.
 %  \tburlfootnote{https://www.menota.org/HB2_A_characters.xml}.
 
   Nowadays, the recommendations have the form of a database which can be
@@ -301,7 +302,7 @@ encoding old text sources.
   the data content is also available for download, under the Creative Commons
   Attribution-ShareAlike 4.0 license, in the form of a \CSV\ or \acro{JSON}
   file.
-  % Some useful resources, e.g. the list of the XML entities, can
+  % Some useful resources, e.g.\ the list of the XML entities, can
   % be found on the site of Medieval Nordic Text Archive
   % (MENOTA)\tburlfootnote{https://www.menota.org/HB2_D_schemas.xml\#N10146}.
   % % python3-demjson
@@ -415,7 +416,7 @@ program (described already in \cite{jsb23} and \cite{Rubricella2023});
 the shape identifiers are preserved. The index contains also the
 results of \acro{OCR} processing done with \textit{Tesseract}, but at
 present, due to
-the lack of appropriate training, they are of essentially no use. The files
+the lack of appropriate training, they are of essentially no use. The file
 names are in the form \texttt{Augezdecki-01a.csv}.
 
 The indexes unfortunately require some hand editing with
@@ -436,7 +437,7 @@ the bounding boxes are adjusted if needed. The files form the basis
 for the intermediate brevigraph indexes named \texttt{*\_workbr.csv}
 where the entries are supplemented by the brevigraph names.
 
-The brevigraph names serve purely a technical goal: they allow
+The brevigraph names serve a purely technical goal: they allow
 grouping similar brevigraphs together in the \textsf{djview4poliqarp}
 program. However, the choice of the names is not obvious. The official
 Unicode names and the Unicode-like \MUFI\ names are cumbersome because
@@ -444,13 +445,13 @@ of their length, e.g., \uname{LATIN CAPITAL LETTER V WITH DIAGONAL
   STROKE}. As an alternative, I was considering using names derived from
 % the \XML\ entity names also provided by \MUFI, for selected pure Unicode
 the \XML\ entity names provided by \MUFI, also for selected pure Unicode
-characters. Some are short and mnemotechnical, e.g. \verb|&pbardes;|
+characters. Some are short and mnemotechnical, e.g.\ \verb|&pbardes;|
 (\ucode{A751} latin small letter P with stroke, here \uname{BAR}, through
 \uname{DES}cender). Some are short and not mnemotechnical, e.g., \verb|&q3app;|
 (\ucode{E8B4} \uname{LATIN SMALL LETTER Q LIGATED WITH FINAL ET};
 \texttt{3} may suggest the shape of the final \textit{et}, but I have
 no association to suggest for \texttt{app}), some are mnemotechnical but rather
-long, e.g. \verb|&lhighstrok;| (\ucode{A749} latin small letter L with
+long, e.g.\ \verb|&lhighstrok;| (\ucode{A749} latin small letter L with
 \uname{HIGH STROK}e).
 
 Nevertheless, after some hesitation, I decided to use those names (with
@@ -511,7 +512,6 @@ charts also show only the first form.
 \input et
 
 
-
 The brevigraph presented in Fig.~\ref{fig:et} is without any doubt the
 Tironian note \textit{et} (Tironian notes are named after Tiro, the
 secretary of Cicero, who is credited with inventing them), used always as a
@@ -540,9 +540,9 @@ Although the name may suggest that this is a variant of the letter
 As noted in \cite[p.~130]{andre:halshs-00983575}, Unicode has
 additionally two similar symbols: \ucode{0264} \uname{JUPITER},
 \ucode{1F729} \uname{ALCHEMICAL SYMBOL FOR TIN ORE}. In the Symbola
-font these tree characters look like, respectively: \cSgl{ꝝ}, % rum
+font these three characters look like, respectively: \cSgl{ꝝ}, % rum
 \cSgl{♃} and % JUPITER
-\cSgl{🜩}. They look differently, but this is the decision of the
+\cSgl{🜩}. They look different, but this is the decision of the
 contemporary font designer. The glyphs listed in Fig.~\ref{fig:rum}
 could probably represent any of those three characters; this has to be
 checked in the original texts.
@@ -586,9 +586,9 @@ shape, can be identified with the character called by \MUFI\
 with some exceptions).
 
 As for the letter with diacritics, the situation is much more
-complicated. I have not found yet their occurrences in the texts, so I
+complicated. I have not yet found their occurrences in the texts, so I
 don't know their meaning. Another problem is the form of the
-diacritics. Besides a diaresis, we have the diacritic which seem to be
+diacritics. Besides a diaresis, we have the diacritic which seems to be
 the same as the one described in \cite{Blake} as \textit{jagged
   horizontal line} which is encoded in Unicode as \ucode {1DD3}
 \uname{COMBINING LATIN SMALL LETTER FLATTENED OPEN A ABOVE} but
@@ -720,7 +720,7 @@ I have little to say about the glyphs in Fig.~\ref{fig:g}, since I
 have not found any occurrence of them in a text. On one hand they resemble
 the letters \textit{rum} (sec.~\ref{sec:modif-lett-r}), and
 \textit{tum} (sec.~\ref{sec:modif-lett-t}). On the other hand it
-resemble also the glyph from Fig.~\ref{fig:cis}. Moreover Blake
+resemble also the glyph from Fig.~\ref{fig:cis}. Moreover, Blake
 \cite{Blake} says that \textit{weird vertical line at end of word}
 means an \textit{s} preceded by a vowel (typically \textit{es} in
 English and \textit{is} in Latin); in other words in Latin it can be
@@ -797,7 +797,7 @@ tags {\Ju{\&\_\_s;}}{\Ju{\&\_\_f;}}.
 \end{figure}
 
 A character with an almost identical shape appeared in
-Gutenberg's 42-line bible, cf. Fig.~\ref{fig:lB42}.
+Gutenberg's 42-line bible; cf.\ Fig.~\ref{fig:lB42}.
 
 
 
@@ -1024,9 +1024,9 @@ are discussed in some publications, but there seems to be no tool
 available directly for use. With some limitations, a variant of a
 workflow described earlier can be used for this purpose. The
 \textsf{djvudict} output can be converted to a \PDF\ document (created
-with \TeX{}) with enlarged glyphs which make relatively easy to
+with \TeX{}) with enlarged glyphs which make it relatively easy to
 search for interesting items and to note their identifiers
-(Fig.~\ref{fig:page}). Additionally, an \textsf{djview4poliqarp}
+(Fig.~\ref{fig:page}). Additionally, a \textsf{djview4poliqarp}
 index can be created, which uses the shape identifier as the
 searchable entry fields (Fig.~\ref{fig:cis1}).  The identifiers are
 not unique, nevertheless it is possible with some effort to find the
