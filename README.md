@@ -1,4 +1,6 @@
-# Rubricella In Bień, Janusz S. “Towards an Inventory of Old Print
+# Ungler's Rubricella and related resources
+
+In Bień, Janusz S. “Towards an Inventory of Old Print
 Characters: Ungler’s Rubricella , a Case Study.” TUGboat 44, no. 3
 (2023): 364–75. https://doi.org/10.47397/tb/44-3/tb138bien-rubricella
 (see also the errata) I wrote
